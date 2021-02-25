@@ -69,7 +69,7 @@ handleUserSession = (user) => {
   render() {
     return (
     <div className="App">
-     {sessionStorage.getItem('token') !== null ? <SuperContainer /> : <LoginAndSignup handleUserSession={this.handleUserSession} /> }    
+     {sessionStorage.getItem('token') !== null ? <SuperContainer userData={this.state.userData} /> : <LoginAndSignup handleUserSession={this.handleUserSession} /> }    
     </div>
     )}
   }

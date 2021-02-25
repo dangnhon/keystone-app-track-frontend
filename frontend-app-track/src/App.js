@@ -51,7 +51,7 @@ deleteUser = () => {
 }
 
 logout = () => {
-  alert("You've successfully logged out!")
+  alert("Come back soon!")
   sessionStorage.clear() 
   this.setState({
     logout: true 
@@ -69,9 +69,11 @@ handleUserSession = (user) => {
   render() {
     return (
     <div className="App">
-     {sessionStorage.getItem('token') !== null ? <SuperContainer userData={this.state.userData} /> : <LoginAndSignup handleUserSession={this.handleUserSession} /> }    
+     {sessionStorage.getItem('token') !== null ? <SuperContainer userData={this.state.userData} logout={this.logout} deleteUser={this.deleteUser} userData={this.state.userData} /> : <LoginAndSignup handleUserSession={this.handleUserSession} /> }    
     </div>
     )}
   }
+
+  // ADD A GIF DEMO VIDEO TO PLAY ON THE LOGIN AND SIGN UP PAGE SO USERS CAN SEE WHAT THE APP IS LIKE
 
 

@@ -118,3 +118,14 @@ body, html, .App, #root, .outer {
   padding: 1.3rem !important;
   border: black;
 }
+
+.add-new {
+  margin-top: 10px;
+  padding: 10px;
+  color: #fff;
+  border-radius:  15px;
+  font-size: small;
+  background-color: #343a40;
+  border-color: #343a40;
+}
+

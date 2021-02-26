@@ -1,9 +1,18 @@
 import React from 'react' 
 import 'bootstrap/dist/css/bootstrap.min.css'
 import {Card} from 'react-bootstrap'
+import AddNewJob from '../components/AddNewJob.js'
 
 export default class AllJobAndTask extends React.Component {
 
+    state = {
+        isOpen: true
+    }
+
+    openModal = () => this.setState({ isOpen: true });
+    closeModal = () => this.setState({ isOpen: false });
+    handleSubmit= () => { console.log("work)")}
+    
     getAllJob = () => {
        return this.props.userData.jobs.map(job => 
             <div className="job-card">
@@ -35,17 +44,25 @@ export default class AllJobAndTask extends React.Component {
             )
     }
     
-    render() {
+    render() {         
+
         return(
             <div className="job-dynamic-container">
                 <div className="job-container-child left">
+                    <button onClick={this.openModal} className="add-new">Add New Job</button>
+
+                    { this.state.isOpen ? <AddNewJob 
+                        closeModal={this.closeModal} 
+                        isOpen={this.state.isOpen} 
+                        handleSubmit={this.handleSubmit}/> : null }
+
                     {this.getAllJob()}
                 </div>
 
                 <div className="job-container-child right">
+                <button className="add-new">Sort All Tasks</button>
                     {this.getAllTask()}
                 </div>
-
             </div>
         )
     }

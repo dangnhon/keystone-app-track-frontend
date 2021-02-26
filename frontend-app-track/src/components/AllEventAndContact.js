@@ -41,10 +41,12 @@ export default class AllEventAndContact extends React.Component {
         return(
             <div className="job-dynamic-container">
             <div className="job-container-child left">
+            <button className="add-new">Add New Meetup</button>
                 {this.getAllJob()}
             </div>
 
             <div className="job-container-child right">
+                <h3>All Contacts</h3>
                 {this.getAllTask()}
             </div>
 

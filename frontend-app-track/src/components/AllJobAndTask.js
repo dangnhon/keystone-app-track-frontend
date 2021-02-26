@@ -6,12 +6,12 @@ import AddNewJob from '../components/AddNewJob.js'
 export default class AllJobAndTask extends React.Component {
 
     state = {
-        isOpen: true
+        isOpen: false
     }
 
     openModal = () => this.setState({ isOpen: true });
     closeModal = () => this.setState({ isOpen: false });
-    handleSubmit= () => { console.log("work)")}
+
     
     getAllJob = () => {
        return this.props.userData.jobs.map(job => 
@@ -53,8 +53,7 @@ export default class AllJobAndTask extends React.Component {
 
                     { this.state.isOpen ? <AddNewJob 
                         closeModal={this.closeModal} 
-                        isOpen={this.state.isOpen} 
-                        handleSubmit={this.handleSubmit}/> : null }
+                        isOpen={this.state.isOpen} /> : null }
 
                     {this.getAllJob()}
                 </div>

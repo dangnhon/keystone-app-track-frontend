@@ -9,7 +9,11 @@ export default class App extends React.Component{
   state = {
     userData: {
       email: null,
-      name: null
+      name: null,
+      jobs: [], 
+      meetup_contacts: [], 
+      meetups: [], 
+      tasks: []
     },
     logout: false
 }
@@ -69,7 +73,7 @@ handleUserSession = (user) => {
   render() {
     return (
     <div className="App">
-     {sessionStorage.getItem('token') !== null ? <SuperContainer userData={this.state.userData} logout={this.logout} deleteUser={this.deleteUser} userData={this.state.userData} /> : <LoginAndSignup handleUserSession={this.handleUserSession} /> }    
+     {sessionStorage.getItem('token') !== null ? <SuperContainer logout={this.logout} deleteUser={this.deleteUser} userData={this.state.userData} /> : <LoginAndSignup handleUserSession={this.handleUserSession} /> }    
     </div>
     )}
   }

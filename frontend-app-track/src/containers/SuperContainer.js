@@ -42,7 +42,10 @@ export default class SuperContainer extends React.Component {
               <div className="outer">
                 <div className="inner">
                   <Switch>
-                    <Route exact path='/home' component={DynamicPane} />
+                    {/* <Route exact path='/' component={DynamicPane} /> */}
+                    <Route exact path='/home' render={() => {
+                    return <DynamicPane userData={this.props.userData.jobs} /> 
+                     }} />
                     <Route exact path="/profile" render={() => {
                     return <Profile deleteUser={this.props.deleteUser} userData={this.props.userData} /> 
                      }} />
@@ -54,7 +57,8 @@ export default class SuperContainer extends React.Component {
                   </Switch>
                 </div>
               </div>
-            </div></Router>
+            </div>
+            </Router>
           );
     }
 }

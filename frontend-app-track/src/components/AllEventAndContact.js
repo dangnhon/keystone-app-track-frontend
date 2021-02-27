@@ -1,10 +1,20 @@
 import React from 'react' 
 import 'bootstrap/dist/css/bootstrap.min.css'
 import {Card} from 'react-bootstrap'
+import AddNewEvent from '../components/AddNewEvent.js'
+
 
 export default class AllEventAndContact extends React.Component {
 
-    getAllJob = () => {
+    state = {
+        isEventOpen: false
+    }
+
+    openModal = () => this.setState({ isEventOpen: true });
+    closeModal = () => this.setState({ isEventOpen: false });
+
+
+    getAllMeet = () => {
         return this.props.userData.meetups.map(meet => 
              <div className="job-card">
              <Card style={{ width: '100%' }}>
@@ -20,7 +30,7 @@ export default class AllEventAndContact extends React.Component {
              )
      }
  
-     getAllTask = () => {
+     getAllContact = () => {
          return this.props.userData.meetup_contacts.map(contact => 
              <div className="job-card">
              <Card style={{ width: '100%' }}>
@@ -41,13 +51,18 @@ export default class AllEventAndContact extends React.Component {
         return(
             <div className="job-dynamic-container">
             <div className="job-container-child left">
-            <button className="add-new">Add New Meetup</button>
-                {this.getAllJob()}
+            <button onClick={this.openModal} className="add-new">Add New Meetup</button>
+
+            { this.state.isEventOpen ? <AddNewEvent 
+                closeModal={this.closeModal} 
+                isEventOpen={this.state.isEventOpen} updateNewEvent={this.props.updateNewEvent} userData={this.props.userData} /> : null }   
+
+                {this.getAllMeet()}
             </div>
 
             <div className="job-container-child right">
                 <h3>All Contacts</h3>
-                {this.getAllTask()}
+                {this.getAllContact()}
             </div>
 
         </div>

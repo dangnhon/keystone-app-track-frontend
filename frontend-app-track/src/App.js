@@ -15,7 +15,7 @@ export default class App extends React.Component{
       meetups: [], 
       tasks: []
     },
-    logout: false
+    logout: false,
 }
 
 // this is to grab the same user each time the page refreshes so they don't have to re login
@@ -35,6 +35,24 @@ componentDidMount() {
     })}
     )
   }
+}
+
+updateNewJob = (createdJob) => {
+  this.setState({ 
+    userData: {
+      ...this.state.userData, 
+        jobs: [createdJob, ...this.state.userData.jobs],
+    }
+  })
+}
+
+updateNewEvent = (createdEvent) => {
+  this.setState({ 
+    userData: {
+      ...this.state.userData, 
+        meetups: [createdEvent, ...this.state.userData.meetups],
+    }
+  })
 }
 
 deleteUser = () => {
@@ -62,7 +80,6 @@ logout = () => {
   })
 }
 
-// if you're using sessionStorage as a conditional in the render, have to set it before setting state to get it to be truthy and re render after state updates.
 handleUserSession = (user) => {
   sessionStorage.setItem('token', user.jwt)
   this.setState({
@@ -73,7 +90,7 @@ handleUserSession = (user) => {
   render() {
     return (
     <div className="App">
-     {sessionStorage.getItem('token') !== null ? <SuperContainer logout={this.logout} deleteUser={this.deleteUser} userData={this.state.userData} /> : <LoginAndSignup handleUserSession={this.handleUserSession} /> }    
+     {sessionStorage.getItem('token') !== null ? <SuperContainer updateNewEvent={this.updateNewEvent} updateNewJob={this.updateNewJob} logout={this.logout} deleteUser={this.deleteUser} userData={this.state.userData} /> : <LoginAndSignup handleUserSession={this.handleUserSession} /> }    
     </div>
     )}
   }

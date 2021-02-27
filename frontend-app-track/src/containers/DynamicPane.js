@@ -1,7 +1,7 @@
 import React from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import AllJobAndTask from '../components/AllJobAndTask.js'
-import AllEventAndCntact from '../components/AllEventAndContact.js'
+import AllEventAndContact from '../components/AllEventAndContact.js'
 
 export default class DynamicPane extends React.Component {
     render() {
@@ -9,11 +9,11 @@ export default class DynamicPane extends React.Component {
             <div className="dynamic-container">
 
                 <div className="container-child left"> 
-                    <AllJobAndTask userData={this.props.userData} />  
+                    <AllJobAndTask  updateNewJob={this.props.updateNewJob} userData={this.props.userData} />  
                 </div> 
 
                 <div className="container-child right"> 
-                    <AllEventAndCntact userData={this.props.userData} />
+                    <AllEventAndContact updateNewEvent={this.props.updateNewEvent} userData={this.props.userData} />
                 </div> 
 
             </div>

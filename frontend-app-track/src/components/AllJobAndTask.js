@@ -44,6 +44,7 @@ export default class AllJobAndTask extends React.Component {
             )
     }
     
+
     render() {         
 
         return(
@@ -53,13 +54,14 @@ export default class AllJobAndTask extends React.Component {
 
                     { this.state.isOpen ? <AddNewJob 
                         closeModal={this.closeModal} 
-                        isOpen={this.state.isOpen} /> : null }
+                        isOpen={this.state.isOpen} updateNewJob={this.props.updateNewJob} userData={this.props.userData} /> : null }
 
                     {this.getAllJob()}
                 </div>
 
                 <div className="job-container-child right">
-                <button className="add-new">Sort All Tasks</button>
+                <button onClick={this.openModal} className="add-new">Sort All Tasks</button>
+
                     {this.getAllTask()}
                 </div>
             </div>

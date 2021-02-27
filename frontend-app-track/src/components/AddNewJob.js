@@ -14,23 +14,33 @@ export default class AddNewJob extends React.Component {
             salary: "",
             status: false, 
             note: "",
-            contact_number: ""
+            contact_number: "",
+            user_id: this.props.userData.id,
     }
 
     handleChange = (e) => {
         this.setState({
-                    [e.target.name]: e.target.value,
+            [e.target.name]: e.target.value,
         })
     }
 
     handleSubmitNewJob = (e) => {
-        debugger
         e.preventDefault() 
-        //make a POST request after builidng out the create backend action
-        console.log(e)
+        let createJob = this.state
+        let token = sessionStorage.getItem("token")
+        fetch('http://localhost:3000/jobs', {
+            method: "POST",
+            headers: {
+                Authorization: `bearer ${token}`,
+                "Content-Type": "application/json"
+            }, 
+            body: JSON.stringify(createJob)
+        })
+        .then(reps => reps.json()) 
+        .then(createdJob => this.props.updateNewJob(createdJob))
+        .then(this.props.closeModal)
     }
 
-  
     render(){
       return(
         <Modal 
@@ -40,7 +50,7 @@ export default class AddNewJob extends React.Component {
             onHide={this.props.closeModal}
         >
             <Modal.Header closeButton>
-            <Modal.Title id="contained-modal-title-vcenter">Track A New Job</Modal.Title>
+            <Modal.Title id="contained-modal-title-vcenter">Track a New Job</Modal.Title>
             </Modal.Header>
             <Modal.Body>
                 <Form.Group >
@@ -66,9 +76,7 @@ export default class AddNewJob extends React.Component {
                 </Form.Group>
             </Modal.Body>
             <Modal.Footer>
-                <Button variant="primary" type="submit" onSubmit={(e) => this.handleSubmitNewJob}>
-                    Submit
-                </Button>
+                <Button variant="primary" onClick={(e) => this.handleSubmitNewJob(e)} type="submit" >Submit</Button>
             </Modal.Footer>
         </Modal>
       )

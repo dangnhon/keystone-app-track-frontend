@@ -41,7 +41,18 @@ updateNewJob = (createdJob) => {
   this.setState({ 
     userData: {
       ...this.state.userData, 
-        jobs: [createdJob, ...this.state.userData.jobs],
+        jobs: [createdJob, ...this.state.userData.jobs]
+    }
+  })
+}
+
+updateOldJob = (updatedJob) => {
+  let allOtherJob = this.state.userData.jobs.filter(job => job.id !== updatedJob.id)
+  let updatedJobArray = [updatedJob, ...allOtherJob]
+  this.setState({
+    userData: {
+      ...this.state.userData, 
+      jobs: updatedJobArray
     }
   })
 }
@@ -49,8 +60,19 @@ updateNewJob = (createdJob) => {
 updateNewEvent = (createdEvent) => {
   this.setState({ 
     userData: {
+        ...this.state.userData, 
+        meetups: [createdEvent, ...this.state.userData.meetups]
+    }
+  })
+}
+
+updateOldMeet = (updatedMeet) => {
+  let allOtherMeet = this.state.userData.meetups.filter(meet => meet.id !== updatedMeet.id)
+  let updatedMeetArray = [updatedMeet, ...allOtherMeet]
+  this.setState({
+    userData: {
       ...this.state.userData, 
-        meetups: [createdEvent, ...this.state.userData.meetups],
+      meetups: updatedMeetArray
     }
   })
 }
@@ -90,7 +112,15 @@ handleUserSession = (user) => {
   render() {
     return (
     <div className="App">
-     {sessionStorage.getItem('token') !== null ? <SuperContainer updateNewEvent={this.updateNewEvent} updateNewJob={this.updateNewJob} logout={this.logout} deleteUser={this.deleteUser} userData={this.state.userData} /> : <LoginAndSignup handleUserSession={this.handleUserSession} /> }    
+     {sessionStorage.getItem('token') !== null ? <SuperContainer 
+     updateOldJob={this.updateOldJob} 
+     updateNewEvent={this.updateNewEvent} 
+     updateOldMeet={this.updateOldMeet}
+     updateNewJob={this.updateNewJob} 
+     logout={this.logout} 
+     deleteUser={this.deleteUser} 
+     userData={this.state.userData} 
+     /> : <LoginAndSignup handleUserSession={this.handleUserSession} /> }    
     </div>
     )}
   }

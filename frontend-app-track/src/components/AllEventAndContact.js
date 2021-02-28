@@ -2,22 +2,31 @@ import React from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import {Card} from 'react-bootstrap'
 import AddNewEvent from '../components/AddNewEvent.js'
+import EditMeetViewContact from '../components/EditMeetViewContact.js'
 
 
 export default class AllEventAndContact extends React.Component {
 
     state = {
-        isEventOpen: false
+        isEventOpen: false,
+        openEdit: false,
+        selectedMeet: {}
     }
 
     openModal = () => this.setState({ isEventOpen: true });
     closeModal = () => this.setState({ isEventOpen: false });
 
+    openEditModal = (e, meet) => {
+        this.setState({ openEdit: true })
+        this.setState({selectedMeet: meet})
+    }
+
+    closeEditModal = () => this.setState({ openEdit: false })
 
     getAllMeet = () => {
         return this.props.userData.meetups.map(meet => 
              <div className="job-card">
-             <Card style={{ width: '100%' }}>
+             <Card className={meet.id} onClick={(e) => this.openEditModal(e, meet)} style={{ width: '100%' }}>
                  <Card.Body>
                      <Card.Title>Meetup: {meet.name}</Card.Title>
                          <Card.Text>
@@ -57,7 +66,12 @@ export default class AllEventAndContact extends React.Component {
                 closeModal={this.closeModal} 
                 isEventOpen={this.state.isEventOpen} updateNewEvent={this.props.updateNewEvent} userData={this.props.userData} /> : null }   
 
-                {this.getAllMeet()}
+            {this.getAllMeet()}
+
+            { this.state.openEdit ? <EditMeetViewContact 
+                closeEditModal={this.closeEditModal} 
+                openEdit={this.state.openEdit} updateOldMeet={this.props.updateOldMeet} userData={this.props.userData} selectedMeet={this.state.selectedMeet} /> : null }
+
             </div>
 
             <div className="job-container-child right">

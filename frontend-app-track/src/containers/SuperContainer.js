@@ -44,10 +44,20 @@ export default class SuperContainer extends React.Component {
                   <Switch>
                     {/* <Route exact path='/' component={DynamicPane} /> */}
                     <Route exact path='/' render={() => {
-                    return <DynamicPane updateNewEvent={this.props.updateNewEvent} updateNewJob={this.props.updateNewJob} userData={this.props.userData} /> 
+                    return <DynamicPane 
+                    updateNewEvent={this.props.updateNewEvent} 
+                    updateNewJob={this.props.updateNewJob} 
+                    userData={this.props.userData}
+                    updateOldJob={this.props.updateOldJob}
+                    updateOldMeet={this.props.updateOldMeet} /> 
                      }} />
                     <Route exact path='/home' render={() => {
-                    return <DynamicPane updateNewEvent={this.props.updateNewEvent} updateNewJob={this.props.updateNewJob} userData={this.props.userData} /> 
+                    return <DynamicPane 
+                    updateNewEvent={this.props.updateNewEvent} 
+                    updateNewJob={this.props.updateNewJob} 
+                    userData={this.props.userData} 
+                    updateOldJob={this.props.updateOldJob} 
+                    updateOldMeet={this.props.updateOldMeet} /> 
                      }} />
                     <Route exact path="/profile" render={() => {
                     return <Profile deleteUser={this.props.deleteUser} userData={this.props.userData} /> 

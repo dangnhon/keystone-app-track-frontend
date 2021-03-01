@@ -42,8 +42,8 @@ export default class AddNewEvent extends React.Component {
             aria-labelledby="contained-modal-title-vcenter"
             centered
             show={this.props.isEventOpen} 
-            onHide={this.props.closeModal}
-        >
+            onHide={this.props.closeModal}>
+                
             <Modal.Header closeButton>
             <Modal.Title id="contained-modal-title-vcenter">Add a New Meetup</Modal.Title>
             </Modal.Header>

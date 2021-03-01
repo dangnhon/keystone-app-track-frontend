@@ -42,13 +42,15 @@ export default class AddNewJob extends React.Component {
     }
 
     render(){
-      return(
+      return(   
+
         <Modal 
             aria-labelledby="contained-modal-title-vcenter"
             centered
             show={this.props.isOpen} 
-            onHide={this.props.closeModal}
-        >
+            onHide={this.props.closeModal}>
+                
+
             <Modal.Header closeButton>
             <Modal.Title id="contained-modal-title-vcenter">Track a New Job</Modal.Title>
             </Modal.Header>
@@ -79,6 +81,7 @@ export default class AddNewJob extends React.Component {
                 <Button variant="primary" onClick={(e) => this.handleSubmitNewJob(e)} type="submit" >Submit</Button>
             </Modal.Footer>
         </Modal>
+
       )
     }
   }

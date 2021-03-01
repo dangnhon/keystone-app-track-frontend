@@ -10,8 +10,29 @@ export default class AllEventAndContact extends React.Component {
     state = {
         isEventOpen: false,
         openEdit: false,
-        selectedMeet: {}
+        selectedMeet: {},
+        allMeetups: [] 
     }
+
+    componentDidMount() {
+        let token = sessionStorage.getItem('token')
+            if (token) {
+            fetch('http://localhost:3000/meetups', {
+            method: "GET",
+            headers: {
+            Authorization: `bearer ${token}`,
+            }, 
+        })
+        .then(resp => resp.json())
+        .then()
+        .then(meetups => { 
+            this.setState({
+                allMeetups: 
+                   meetups
+            })}
+            )
+        } 
+    }    
 
     openModal = () => this.setState({ isEventOpen: true });
     closeModal = () => this.setState({ isEventOpen: false });
@@ -64,13 +85,19 @@ export default class AllEventAndContact extends React.Component {
 
             { this.state.isEventOpen ? <AddNewEvent 
                 closeModal={this.closeModal} 
-                isEventOpen={this.state.isEventOpen} updateNewEvent={this.props.updateNewEvent} userData={this.props.userData} /> : null }   
+                isEventOpen={this.state.isEventOpen} 
+                updateNewEvent={this.props.updateNewEvent} 
+                userData={this.props.userData} /> : null }   
 
             {this.getAllMeet()}
 
             { this.state.openEdit ? <EditMeetViewContact 
                 closeEditModal={this.closeEditModal} 
-                openEdit={this.state.openEdit} updateOldMeet={this.props.updateOldMeet} userData={this.props.userData} selectedMeet={this.state.selectedMeet} /> : null }
+                openEdit={this.state.openEdit} 
+                updateOldMeet={this.props.updateOldMeet} 
+                userData={this.props.userData} 
+                selectedMeet={this.state.selectedMeet} 
+                allMeetups={this.state.allMeetups} /> : null }
 
             </div>
 

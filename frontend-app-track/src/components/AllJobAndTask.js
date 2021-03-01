@@ -9,15 +9,36 @@ export default class AllJobAndTask extends React.Component {
     state = {
         isOpen: false,
         openEdit: false,
-        selectedJob: {}
+        selectedJob: {},
+        allJobs: []
     }
+
+    componentDidMount() {
+        let token = sessionStorage.getItem('token')
+            if (token) {
+            fetch('http://localhost:3000/jobs', {
+            method: "GET",
+            headers: {
+            Authorization: `bearer ${token}`,
+            }, 
+        })
+        .then(resp => resp.json())
+        .then()
+        .then(jobs => { 
+            this.setState({
+                allJobs: 
+                   jobs
+            })}
+            )
+        } 
+    }    
 
     openModal = () => this.setState({ isOpen: true })
     closeModal = () => this.setState({ isOpen: false })
 
     openEditModal = (e, job) => {
         this.setState({ openEdit: true })
-        this.setState({selectedJob: job})
+        this.setState({selectedJob: job}) 
     }
 
     closeEditModal = () => this.setState({ openEdit: false })
@@ -63,19 +84,24 @@ export default class AllJobAndTask extends React.Component {
 
                     { this.state.isOpen ? <AddNewJob 
                         closeModal={this.closeModal} 
-                        isOpen={this.state.isOpen} updateNewJob={this.props.updateNewJob} userData={this.props.userData} /> : null }
+                        isOpen={this.state.isOpen} 
+                        updateNewJob={this.props.updateNewJob} 
+                        userData={this.props.userData} /> : null }
 
                     {this.getAllJob()}
 
                     { this.state.openEdit ? <EditJobViewTask 
                         closeEditModal={this.closeEditModal} 
-                        openEdit={this.state.openEdit} updateOldJob={this.props.updateOldJob} userData={this.props.userData} selectedJob={this.state.selectedJob} /> : null }
+                        openEdit={this.state.openEdit} 
+                        updateOldJob={this.props.updateOldJob} 
+                        userData={this.props.userData} 
+                        allJobs={this.state.allJobs} 
+                        selectedJob={this.state.selectedJob} /> : null }
 
                 </div>
 
                 <div className="job-container-child right">
                 <button className="add-new">Sort All Tasks</button>
-
                     {this.getAllTask()}
                 </div>
             </div>

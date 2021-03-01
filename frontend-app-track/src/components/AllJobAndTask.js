@@ -96,7 +96,8 @@ export default class AllJobAndTask extends React.Component {
                         updateOldJob={this.props.updateOldJob} 
                         userData={this.props.userData} 
                         allJobs={this.state.allJobs} 
-                        selectedJob={this.state.selectedJob} /> : null }
+                        selectedJob={this.state.selectedJob} 
+                        handleDeleteJob={this.props.handleDeleteJob} /> : null }
 
                 </div>
 

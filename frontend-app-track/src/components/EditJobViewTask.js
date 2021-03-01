@@ -63,6 +63,12 @@ export default class EditJobViewTask extends React.Component {
         .then(this.props.closeEditModal)
     }
 
+    handleDelete = () => {
+        let job = this.props.selectedJob
+        this.props.handleDeleteJob(job)
+        this.props.closeEditModal()
+    }
+
     render() {
         return(
 
@@ -105,7 +111,8 @@ export default class EditJobViewTask extends React.Component {
                 </Form.Group>
                 </Modal.Body>
                 <Modal.Footer>
-                <Button variant="primary" onClick={(e) => this.handleSubmitEditJob(e)} type="submit" >Submit</Button>
+                <Button variant="primary" onClick={(e) => this.handleSubmitEditJob(e)} type="submit" >Submit Edit</Button>
+                <Button variant="primary" onClick={() => this.handleDelete()} >Delete App</Button>
                 </Modal.Footer>
                 <div className="job-container-child right" >
                     {this.getAllJobTask()}

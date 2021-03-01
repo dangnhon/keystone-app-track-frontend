@@ -66,6 +66,50 @@ updateNewEvent = (createdEvent) => {
   })
 }
 
+handleDeleteMeet = (meet) => {
+  let meetId = meet.id 
+  let updatedMeetArray = this.state.userData.meetups.filter(meet => meet.id !== meetId)
+  let token = sessionStorage.getItem("token")
+  fetch(`http://localhost:3000/meetups/${meetId}`, {
+      method: "DELETE",
+      headers: {
+          Authorization: `bearer ${token}`,
+          "Content-Type": "application/json"
+      }
+  })
+  .then(resp => resp.json())
+  .then(message => alert("You've deleted a Meetup!"))
+
+  this.setState({
+    userData: {
+      ...this.state.userData, 
+      meetups: updatedMeetArray
+  }
+  })
+}
+
+handleDeleteJob = (job) => {
+  let jobId = job.id 
+  let updatedJobArray = this.state.userData.jobs.filter(job => job.id !== jobId)
+  let token = sessionStorage.getItem("token")
+  fetch(`http://localhost:3000/jobs/${jobId}`, {
+      method: "DELETE",
+      headers: {
+          Authorization: `bearer ${token}`,
+          "Content-Type": "application/json"
+      }
+  })
+  .then(resp => resp.json())
+  .then(message => alert("You've deleted a job app!"))
+
+  this.setState({
+    userData: {
+      ...this.state.userData, 
+      jobs: updatedJobArray
+  }
+  })
+}
+
 updateOldMeet = (updatedMeet) => {
   let allOtherMeet = this.state.userData.meetups.filter(meet => meet.id !== updatedMeet.id)
   let updatedMeetArray = [updatedMeet, ...allOtherMeet]
@@ -120,6 +164,8 @@ handleUserSession = (user) => {
      logout={this.logout} 
      deleteUser={this.deleteUser} 
      userData={this.state.userData} 
+     handleDeleteMeet={this.handleDeleteMeet}
+     handleDeleteJob={this.handleDeleteJob} 
      /> : <LoginAndSignup handleUserSession={this.handleUserSession} /> }    
     </div>
     )}

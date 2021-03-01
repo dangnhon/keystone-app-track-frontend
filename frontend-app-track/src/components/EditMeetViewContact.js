@@ -60,6 +60,12 @@ export default class EditMeetViewContact extends React.Component {
         .then(this.props.closeEditModal)
     }
 
+    handleDelete = () => {
+        let meet = this.props.selectedMeet
+        this.props.handleDeleteMeet(meet)
+        this.props.closeEditModal()
+    }
+
     render() {
         return(
             <Modal 
@@ -85,8 +91,9 @@ export default class EditMeetViewContact extends React.Component {
 
                 </Form.Group>
             </Modal.Body>
-            <Modal.Footer>
-                <Button variant="primary" onClick={(e) => this.handleSubmitEditMeet(e)} type="submit" >Submit</Button>
+            <Modal.Footer >
+                <Button variant="primary" onClick={(e) => this.handleSubmitEditMeet(e)} type="submit" >Submit Edit</Button>
+                <Button variant="primary" onClick={() => this.handleDelete()} >Delete Meetup</Button>
             </Modal.Footer>
                 <div className="job-container-child right" >
                     {this.getAllMeetContacts()}

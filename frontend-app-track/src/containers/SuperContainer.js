@@ -49,7 +49,9 @@ export default class SuperContainer extends React.Component {
                     updateNewJob={this.props.updateNewJob} 
                     userData={this.props.userData}
                     updateOldJob={this.props.updateOldJob}
-                    updateOldMeet={this.props.updateOldMeet} /> 
+                    updateOldMeet={this.props.updateOldMeet}
+                    handleDeleteMeet={this.props.handleDeleteMeet}
+                    handleDeleteJob={this.props.handleDeleteJob} /> 
                      }} />
                     <Route exact path='/home' render={() => {
                     return <DynamicPane 
@@ -57,7 +59,9 @@ export default class SuperContainer extends React.Component {
                     updateNewJob={this.props.updateNewJob} 
                     userData={this.props.userData} 
                     updateOldJob={this.props.updateOldJob} 
-                    updateOldMeet={this.props.updateOldMeet} /> 
+                    updateOldMeet={this.props.updateOldMeet} 
+                    handleDeleteMeet={this.props.handleDeleteMeet} 
+                    handleDeleteJob={this.props.handleDeleteJob} /> 
                      }} />
                     <Route exact path="/profile" render={() => {
                     return <Profile deleteUser={this.props.deleteUser} userData={this.props.userData} /> 

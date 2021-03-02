@@ -41,6 +41,7 @@ export default class AddNewEvent extends React.Component {
         <Modal 
             aria-labelledby="contained-modal-title-vcenter"
             centered
+            size="lg"
             show={this.props.isEventOpen} 
             onHide={this.props.closeModal}>
                 

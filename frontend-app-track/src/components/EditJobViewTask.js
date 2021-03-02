@@ -3,6 +3,7 @@ import Modal from 'react-bootstrap/Modal'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/button'
 import {Card} from 'react-bootstrap'
+import NewTask from '../components/NewTask.js'
 import React from 'react'
 
 export default class EditJobViewTask extends React.Component {
@@ -17,8 +18,14 @@ export default class EditJobViewTask extends React.Component {
         note: this.props.selectedJob.note,
         contact_number: this.props.selectedJob.contact_number,
         user_id: this.props.userData.id
-        }
+        },
+        isOpen: false,
+        openEdit: false
     }
+
+    openModal = () => this.setState({ isOpen: true })
+
+    closeModal = () => this.setState({ isOpen: false })
 
     handleChange = (e) => {
         this.setState({
@@ -80,6 +87,7 @@ export default class EditJobViewTask extends React.Component {
             <Modal 
                 aria-labelledby="contained-modal-title-vcenter"
                 centered
+                size="lg"
                 show={this.props.openEdit} 
                 onHide={this.props.closeEditModal}>
 
@@ -118,8 +126,15 @@ export default class EditJobViewTask extends React.Component {
                 <Modal.Footer>
                 <Button variant="primary" onClick={(e) => this.handleSubmitEditJob(e)} type="submit" >Submit Edit</Button>
                 <Button variant="primary" onClick={() => this.handleDelete()} >Delete App</Button>
+                <Button variant="primary" onClick={this.openModal} >New Task</Button>
                 </Modal.Footer>
                 <div className="job-container-child right" >
+                { this.state.isOpen ? <NewTask
+                        closeModal={this.closeModal} 
+                        isOpen={this.state.isOpen} 
+                        selectedJob={this.props.selectedJob}
+                        userData={this.props.userData} /> : null }
+
                     {this.getAllJobTask()}
                 </div>
             </Modal>

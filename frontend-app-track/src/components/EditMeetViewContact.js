@@ -76,6 +76,7 @@ export default class EditMeetViewContact extends React.Component {
             <Modal 
             aria-labelledby="contained-modal-title-vcenter"
             centered
+            size="lg"
             show={this.props.openEdit} 
             onHide={this.props.closeEditModal}>
                 

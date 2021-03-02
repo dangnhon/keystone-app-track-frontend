@@ -72,6 +72,7 @@ export default class AllJobAndTask extends React.Component {
 
                     { this.state.openEdit ? <EditJobViewTask 
                         closeEditModal={this.closeEditModal} 
+                        updateNewTask={this.props.updateNewTask} 
                         openEdit={this.state.openEdit} 
                         updateOldJob={this.props.updateOldJob} 
                         userData={this.props.userData} 

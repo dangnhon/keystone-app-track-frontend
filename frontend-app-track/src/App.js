@@ -3,8 +3,10 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import React from 'react'
 import SuperContainer from './containers/SuperContainer.js'
 import LoginAndSignup from './containers/LoginAndSignup.js'
+import { withRouter } from 'react-router-dom';
 
-export default class App extends React.Component{
+
+ class App extends React.Component{
 
   state = {
     userData: {
@@ -17,6 +19,7 @@ export default class App extends React.Component{
     },
     allJobs: [],
     allMeets: [], 
+    allTask: [], 
     logout: false,
 }
 
@@ -27,7 +30,8 @@ componentDidMount() {
 }
 
 componentDidUpdate(prevProps, prevState) {
-  if (prevState.userData.jobs !== this.state.userData.jobs || prevState.userData.meetups !== this.state.userData.meetups) {
+  // if (prevState.userData.jobs !== this.state.userData.jobs || prevState.userData.meetups !== this.state.userData.meetups || prevState.userData.tasks !== this.state.userData.tasks || prevState.allJobs !== this.state.allJobs || prevState.allMeets !== this.state.allMeets) {
+    if (prevState.userData.jobs !== this.state.userData.jobs || prevState.userData.meetups !== this.state.userData.meetups || prevState.userData.tasks !== this.state.userData.tasks ) {
     this.fetchJob();
     this.fetchMeet() 
   }
@@ -53,17 +57,17 @@ fetchLoggedInUser = () => {
 
 fetchJob = () => {
     let token = sessionStorage.getItem('token')
-    if (token) {
-      fetch('http://localhost:3000/jobs', {
-      method: "GET",
-      headers: {
-      Authorization: `bearer ${token}`,
-      }})
-      .then(resp => resp.json())
-      .then()
-      .then(jobs => { 
-      this.setState({ allJobs: jobs})}
-    )} 
+      if (token) {
+        fetch('http://localhost:3000/jobs', {
+        method: "GET",
+        headers: {
+        Authorization: `bearer ${token}`,
+        }})
+        .then(resp => resp.json())
+        .then()
+        .then(jobs => { 
+        this.setState({ allJobs: jobs} )}
+      )} 
   }
 
   fetchMeet = () => {
@@ -90,6 +94,41 @@ updateNewJob = (createdJob) => {
   })
 }
 
+updateNewTask = (createdTask) => {
+  let allJobTask = this.state.allJobs.map(job => job.id === createdTask.job.id ? {...job, tasks: [createdTask, ...job.tasks]} : job )
+  this.setState({ 
+    allJobs: allJobTask
+  })
+  this.updateTaskAgain(createdTask) 
+}
+
+updateTaskAgain = (createdTask) => {
+  this.setState({
+    userData: {
+      ...this.state.userData, 
+        tasks: [createdTask, ...this.state.userData.tasks]
+    }
+  })
+}
+
+updateNewContact = (createdContact) => {
+  let allMeetContact = this.state.allMeets.map(meet => meet.id === createdContact.meetup.id ? {...meet, meetup_contacts: [createdContact, ...meet.meetup_contacts]} : meet )
+  this.setState({ 
+    allMeets: allMeetContact
+  })
+  this.updateContactAgain(createdContact)
+}
+
+updateContactAgain = (createdContact) => {
+  this.setState({
+    userData: {
+      ...this.state.userData, 
+        meetup_contacts: [createdContact, ...this.state.userData.meetup_contacts]
+    }
+  })
+}
+
+
 updateOldJob = (updatedJob) => {
   let allOtherJob = this.state.userData.jobs.filter(job => job.id !== updatedJob.id)
   let updatedJobArray = [updatedJob, ...allOtherJob]
@@ -98,10 +137,6 @@ updateOldJob = (updatedJob) => {
       ...this.state.userData, 
       jobs: updatedJobArray
     }
-  })
-
-  this.setState({
-    rerender: true
   })
 }
 
@@ -192,13 +227,16 @@ logout = () => {
   this.setState({
     logout: true 
   })
+  this.props.history.push("/")
 }
 
 handleUserSession = (user) => {
+  
   sessionStorage.setItem('token', user.jwt)
   this.setState({
     userData: user.user,
   })
+
 }
 
   render() {
@@ -209,6 +247,8 @@ handleUserSession = (user) => {
      updateNewEvent={this.updateNewEvent} 
      updateOldMeet={this.updateOldMeet}
      updateNewJob={this.updateNewJob} 
+     updateNewTask={this.updateNewTask} 
+     updateNewContact={this.updateNewContact}
      logout={this.logout} 
      deleteUser={this.deleteUser} 
      userData={this.state.userData} 
@@ -221,6 +261,7 @@ handleUserSession = (user) => {
     )}
   }
 
+  export default withRouter(App)
   // ADD A GIF DEMO VIDEO TO PLAY ON THE LOGIN AND SIGN UP PAGE SO USERS CAN SEE WHAT THE APP IS LIKE
 
 

@@ -3,6 +3,7 @@ import Modal from 'react-bootstrap/Modal'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/button'
 import {Card} from 'react-bootstrap'
+import NewContact from '../components/NewContact.js'
 import React from 'react'
 
 export default class EditMeetViewContact extends React.Component {
@@ -13,8 +14,14 @@ export default class EditMeetViewContact extends React.Component {
             location: this.props.selectedMeet.location,
             date: this.props.selectedMeet.date,
             user_id: this.props.userData.id 
-        }
+        },
+        isOpen: false,
+        openEdit: false
     }
+
+    openModal = () => this.setState({ isOpen: true })
+
+    closeModal = () => this.setState({ isOpen: false })
 
     handleChange = (e) => {
         this.setState({
@@ -100,8 +107,16 @@ export default class EditMeetViewContact extends React.Component {
             <Modal.Footer >
                 <Button variant="primary" onClick={(e) => this.handleSubmitEditMeet(e)} type="submit" >Submit Edit</Button>
                 <Button variant="primary" onClick={() => this.handleDelete()} >Delete Meetup</Button>
+                <Button variant="primary" onClick={this.openModal} >New Contact</Button>
             </Modal.Footer>
                 <div className="job-container-child right" >
+
+                { this.state.isOpen ? <NewContact
+                    updateNewContact={this.props.updateNewContact} 
+                    closeModal={this.closeModal} 
+                    isOpen={this.state.isOpen} 
+                    selectedMeet={this.props.selectedMeet} /> : null }
+
                     {this.getAllMeetContacts()}
                 </div>
         </Modal>

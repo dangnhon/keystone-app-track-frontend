@@ -4,21 +4,21 @@ import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/button'
 import React from 'react'
 
-export default class NewTask extends React.Component {
+export default class NewContact extends React.Component {
 
     state = {
-        jobTask: {
-            task: "",
-            completed: false,
-            priority: 1,
-            job_id: this.props.selectedJob.id
+        contact: {
+            name: "",
+            phone_number: "",
+            email: "",
+            meetup_id: this.props.selectedMeet.id
         }
     }
 
     handleChange = (e) => {
         this.setState({
-            jobTask: {
-                ...this.state.jobTask, 
+            contact: {
+                ...this.state.contact, 
                 [e.target.name]: e.target.value
             }
         })
@@ -26,18 +26,18 @@ export default class NewTask extends React.Component {
 
     handleSubmitNewTask = (e) => {
         e.preventDefault() 
-        let createTask = this.state.jobTask
+        let createContact = this.state.contact
         let token = sessionStorage.getItem("token")
-        fetch('http://localhost:3000/tasks', {
+        fetch('http://localhost:3000/meetup_contacts', {
             method: "POST",
             headers: {
                 Authorization: `bearer ${token}`,
                 "Content-Type": "application/json"
             }, 
-            body: JSON.stringify(createTask)
+            body: JSON.stringify(createContact)
         })
         .then(reps => reps.json()) 
-        .then(createdTask => this.props.updateNewTask(createdTask))
+        .then(createdContact => this.props.updateNewContact(createdContact))
         .then(this.props.closeModal)
     }
 
@@ -53,22 +53,19 @@ export default class NewTask extends React.Component {
 
 
             <Modal.Header closeButton>
-            <Modal.Title id="contained-modal-title-vcenter">Create a New Task</Modal.Title>
+            <Modal.Title id="contained-modal-title-vcenter">Create a New Contact</Modal.Title>
             </Modal.Header>
             <Modal.Body>
                 <Form.Group >
 
-                    <Form.Label>Task Description: </Form.Label>
-                    <Form.Control type="text" onChange={(e) => this.handleChange(e)} name="task"  placeholder="Enter Task..."/>
+                    <Form.Label>Name: </Form.Label>
+                    <Form.Control type="text" onChange={(e) => this.handleChange(e)} name="name"  placeholder="Enter name..."/>
 
-                    <Form.Label>Priority: </Form.Label>
-                    <Form.Control as="select" custom onChange={(e) => this.handleChange(e)} name="priority" >
-                    <option value={1}>1</option>
-                    <option value={2}>2</option>
-                    <option value={3}>3</option>
-                    <option value={4}>4</option>
-                    <option value={5}>5</option>
-                    </Form.Control>
+                    <Form.Label>Phone Number: </Form.Label>
+                    <Form.Control type="text" onChange={(e) => this.handleChange(e)} name="phone_number"  placeholder="Enter phone number..."/>
+
+                    <Form.Label>Email: </Form.Label>
+                    <Form.Control type="text" onChange={(e) => this.handleChange(e)} name="email"  placeholder="Enter email..."/>
 
                 </Form.Group>
             </Modal.Body>

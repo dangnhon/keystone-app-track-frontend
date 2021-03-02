@@ -129,11 +129,12 @@ export default class EditJobViewTask extends React.Component {
                 <Button variant="primary" onClick={this.openModal} >New Task</Button>
                 </Modal.Footer>
                 <div className="job-container-child right" >
+
                 { this.state.isOpen ? <NewTask
-                        closeModal={this.closeModal} 
-                        isOpen={this.state.isOpen} 
-                        selectedJob={this.props.selectedJob}
-                        userData={this.props.userData} /> : null }
+                    updateNewTask={this.props.updateNewTask} 
+                    closeModal={this.closeModal} 
+                    isOpen={this.state.isOpen} 
+                    selectedJob={this.props.selectedJob} /> : null }
 
                     {this.getAllJobTask()}
                 </div>

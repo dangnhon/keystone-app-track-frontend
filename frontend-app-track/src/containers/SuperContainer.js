@@ -15,7 +15,7 @@ export default class SuperContainer extends React.Component {
 
 
     render(){
-        return (<Router>
+        return (
             <div className="App">
               <nav className="navbar navbar-expand-lg navbar-light fixed-top">
                 <div className="container">
@@ -42,23 +42,13 @@ export default class SuperContainer extends React.Component {
               <div className="outer">
                 <div className="inner">
                   <Switch>
-                    {/* <Route exact path='/' component={DynamicPane} /> */}
-                    <Route exact path='/' render={() => {
-                    return <DynamicPane 
-                    updateNewEvent={this.props.updateNewEvent} 
-                    updateNewJob={this.props.updateNewJob} 
-                    userData={this.props.userData}
-                    allJobs={this.props.allJobs}
-                    allMeets={this.props.allMeets}
-                    updateOldJob={this.props.updateOldJob}
-                    updateOldMeet={this.props.updateOldMeet}
-                    handleDeleteMeet={this.props.handleDeleteMeet}
-                    handleDeleteJob={this.props.handleDeleteJob} /> 
-                     }} />
+                    
                     <Route exact path='/home' render={() => {
                     return <DynamicPane 
                     updateNewEvent={this.props.updateNewEvent} 
                     updateNewJob={this.props.updateNewJob} 
+                    updateNewTask={this.props.updateNewTask}
+                    updateNewContact={this.props.updateNewContact} 
                     userData={this.props.userData} 
                     allJobs={this.props.allJobs}
                     allMeets={this.props.allMeets}
@@ -67,19 +57,36 @@ export default class SuperContainer extends React.Component {
                     handleDeleteMeet={this.props.handleDeleteMeet} 
                     handleDeleteJob={this.props.handleDeleteJob} /> 
                      }} />
+
                     <Route exact path="/profile" render={() => {
                     return <Profile deleteUser={this.props.deleteUser} userData={this.props.userData} /> 
                      }} />
-                    {/* <Route exact path="/appointment" component={Appointment} />  */}
+
                     <Route exact path="/about" component={About} />
+
                     <Route exact path="/logout" render={() => {
                     return <Logout logout={this.props.logout} /> 
                      }} />
+
+                     <Route exact path='/' render={() => {
+                    return <DynamicPane 
+                    updateNewEvent={this.props.updateNewEvent} 
+                    updateNewJob={this.props.updateNewJob} 
+                    updateNewTask={this.props.updateNewTask}
+                    updateNewContact={this.props.updateNewContact} 
+                    userData={this.props.userData}
+                    allJobs={this.props.allJobs}
+                    allMeets={this.props.allMeets}
+                    updateOldJob={this.props.updateOldJob}
+                    updateOldMeet={this.props.updateOldMeet}
+                    handleDeleteMeet={this.props.handleDeleteMeet}
+                    handleDeleteJob={this.props.handleDeleteJob} /> 
+                     }} />
+
                   </Switch>
                 </div>
               </div>
             </div>
-            </Router>
           );
     }
 }

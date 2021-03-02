@@ -10,29 +10,8 @@ export default class AllEventAndContact extends React.Component {
     state = {
         isEventOpen: false,
         openEdit: false,
-        selectedMeet: {},
-        allMeetups: [] 
-    }
-
-    componentDidMount() {
-        let token = sessionStorage.getItem('token')
-            if (token) {
-            fetch('http://localhost:3000/meetups', {
-            method: "GET",
-            headers: {
-            Authorization: `bearer ${token}`,
-            }, 
-        })
-        .then(resp => resp.json())
-        .then()
-        .then(meetups => { 
-            this.setState({
-                allMeetups: 
-                   meetups
-            })}
-            )
-        } 
-    }    
+        selectedMeet: {}
+    }  
 
     openModal = () => this.setState({ isEventOpen: true });
     closeModal = () => this.setState({ isEventOpen: false });
@@ -96,6 +75,7 @@ export default class AllEventAndContact extends React.Component {
                 openEdit={this.state.openEdit} 
                 updateOldMeet={this.props.updateOldMeet} 
                 userData={this.props.userData} 
+                allMeets={this.props.allMeets}
                 selectedMeet={this.state.selectedMeet} 
                 allMeetups={this.state.allMeetups} 
                 handleDeleteMeet={this.props.handleDeleteMeet} /> : null }

@@ -48,6 +48,8 @@ export default class SuperContainer extends React.Component {
                     updateNewEvent={this.props.updateNewEvent} 
                     updateNewJob={this.props.updateNewJob} 
                     userData={this.props.userData}
+                    allJobs={this.props.allJobs}
+                    allMeets={this.props.allMeets}
                     updateOldJob={this.props.updateOldJob}
                     updateOldMeet={this.props.updateOldMeet}
                     handleDeleteMeet={this.props.handleDeleteMeet}
@@ -58,6 +60,8 @@ export default class SuperContainer extends React.Component {
                     updateNewEvent={this.props.updateNewEvent} 
                     updateNewJob={this.props.updateNewJob} 
                     userData={this.props.userData} 
+                    allJobs={this.props.allJobs}
+                    allMeets={this.props.allMeets}
                     updateOldJob={this.props.updateOldJob} 
                     updateOldMeet={this.props.updateOldMeet} 
                     handleDeleteMeet={this.props.handleDeleteMeet} 

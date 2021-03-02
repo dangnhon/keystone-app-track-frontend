@@ -15,11 +15,25 @@ export default class App extends React.Component{
       meetups: [], 
       tasks: []
     },
+    allJobs: [],
+    allMeets: [], 
     logout: false,
 }
 
-// this is to grab the same user each time the page refreshes so they don't have to re login
 componentDidMount() {
+  this.fetchLoggedInUser() 
+  this.fetchJob() 
+  this.fetchMeet() 
+}
+
+componentDidUpdate(prevProps, prevState) {
+  if (prevState.userData.jobs !== this.state.userData.jobs || prevState.userData.meetups !== this.state.userData.meetups) {
+    this.fetchJob();
+    this.fetchMeet() 
+  }
+}
+
+fetchLoggedInUser = () => {
   let token = sessionStorage.getItem('token')
   if (token) {
     fetch('http://localhost:3000/profile', {
@@ -36,6 +50,36 @@ componentDidMount() {
     )
   }
 }
+
+fetchJob = () => {
+    let token = sessionStorage.getItem('token')
+    if (token) {
+      fetch('http://localhost:3000/jobs', {
+      method: "GET",
+      headers: {
+      Authorization: `bearer ${token}`,
+      }})
+      .then(resp => resp.json())
+      .then()
+      .then(jobs => { 
+      this.setState({ allJobs: jobs})}
+    )} 
+  }
+
+  fetchMeet = () => {
+    let token = sessionStorage.getItem('token')
+      if (token) {
+        fetch('http://localhost:3000/meetups', {
+        method: "GET",
+        headers: {
+        Authorization: `bearer ${token}`,
+        }})
+        .then(resp => resp.json())
+        .then()
+        .then(meetups => { 
+          this.setState({ allMeets: meetups })}
+      )}
+  }
 
 updateNewJob = (createdJob) => {
   this.setState({ 
@@ -54,6 +98,10 @@ updateOldJob = (updatedJob) => {
       ...this.state.userData, 
       jobs: updatedJobArray
     }
+  })
+
+  this.setState({
+    rerender: true
   })
 }
 
@@ -164,6 +212,8 @@ handleUserSession = (user) => {
      logout={this.logout} 
      deleteUser={this.deleteUser} 
      userData={this.state.userData} 
+     allJobs={this.state.allJobs}
+     allMeets={this.state.allMeets}
      handleDeleteMeet={this.handleDeleteMeet}
      handleDeleteJob={this.handleDeleteJob} 
      /> : <LoginAndSignup handleUserSession={this.handleUserSession} /> }    

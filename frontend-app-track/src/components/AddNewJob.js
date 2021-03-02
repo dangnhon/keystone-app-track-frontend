@@ -24,6 +24,10 @@ export default class AddNewJob extends React.Component {
         })
     }
 
+    componentDidUpdate() {
+        //this.handleSubmitNewJob()
+    }
+
     handleSubmitNewJob = (e) => {
         e.preventDefault() 
         let createJob = this.state

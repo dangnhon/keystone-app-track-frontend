@@ -8,20 +8,25 @@ import React from 'react'
 export default class EditMeetViewContact extends React.Component {
 
     state = { 
-        name: this.props.selectedMeet.name,
-        location: this.props.selectedMeet.location,
-        date: this.props.selectedMeet.date,
-        user_id: this.props.userData.id 
+        meetupData: {
+            name: this.props.selectedMeet.name,
+            location: this.props.selectedMeet.location,
+            date: this.props.selectedMeet.date,
+            user_id: this.props.userData.id 
+        }
     }
 
     handleChange = (e) => {
         this.setState({
-            [e.target.name]: e.target.value,
+            meetupData: {
+                ...this.state.meetupData, 
+                [e.target.name]: e.target.value
+            }
         })
     }
 
     getAllMeetContacts = () => {
-        let matchMeets = this.props.allMeetups.find(job => job.id === this.props.selectedMeet.id)
+        let matchMeets = this.props.allMeets.find(job => job.id === this.props.selectedMeet.id)
         if (matchMeets.meetup_contacts.length !== 0) {
             
             return matchMeets.meetup_contacts.map(contact =>  
@@ -45,7 +50,7 @@ export default class EditMeetViewContact extends React.Component {
 
     handleSubmitEditMeet = (e) => {
         e.preventDefault() 
-        let editedMeet = this.state
+        let editedMeet = this.state.meetupData
         let token = sessionStorage.getItem("token")
         fetch(`http://localhost:3000/meetups/${this.props.selectedMeet.id}`, {
             method: "PATCH",

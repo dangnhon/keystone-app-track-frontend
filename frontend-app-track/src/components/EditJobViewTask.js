@@ -8,6 +8,7 @@ import React from 'react'
 export default class EditJobViewTask extends React.Component {
 
     state = { 
+        jobAppData: {
         company_name: this.props.selectedJob.company_name,
         job_title: this.props.selectedJob.job_title,
         date: this.props.selectedJob.date,
@@ -16,11 +17,15 @@ export default class EditJobViewTask extends React.Component {
         note: this.props.selectedJob.note,
         contact_number: this.props.selectedJob.contact_number,
         user_id: this.props.userData.id
+        }
     }
 
     handleChange = (e) => {
         this.setState({
-            [e.target.name]: e.target.value,
+            jobAppData: {
+                ...this.state.jobAppData, 
+                [e.target.name]: e.target.value
+            }
         })
     }
 
@@ -48,7 +53,7 @@ export default class EditJobViewTask extends React.Component {
 
     handleSubmitEditJob = (e) => {
         e.preventDefault() 
-        let editedJob = this.state
+        let editedJob = this.state.jobAppData
         let token = sessionStorage.getItem("token")
         fetch(`http://localhost:3000/jobs/${this.props.selectedJob.id}`, {
             method: "PATCH",

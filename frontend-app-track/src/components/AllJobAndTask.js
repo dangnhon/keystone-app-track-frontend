@@ -10,28 +10,8 @@ export default class AllJobAndTask extends React.Component {
         isOpen: false,
         openEdit: false,
         selectedJob: {},
-        allJobs: []
-    }
-
-    componentDidMount() {
-        let token = sessionStorage.getItem('token')
-            if (token) {
-            fetch('http://localhost:3000/jobs', {
-            method: "GET",
-            headers: {
-            Authorization: `bearer ${token}`,
-            }, 
-        })
-        .then(resp => resp.json())
-        .then()
-        .then(jobs => { 
-            this.setState({
-                allJobs: 
-                   jobs
-            })}
-            )
-        } 
-    }    
+        
+    }   
 
     openModal = () => this.setState({ isOpen: true })
     closeModal = () => this.setState({ isOpen: false })
@@ -95,7 +75,7 @@ export default class AllJobAndTask extends React.Component {
                         openEdit={this.state.openEdit} 
                         updateOldJob={this.props.updateOldJob} 
                         userData={this.props.userData} 
-                        allJobs={this.state.allJobs} 
+                        allJobs={this.props.allJobs} 
                         selectedJob={this.state.selectedJob} 
                         handleDeleteJob={this.props.handleDeleteJob} /> : null }
 

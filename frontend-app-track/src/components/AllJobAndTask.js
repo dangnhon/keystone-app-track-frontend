@@ -43,7 +43,7 @@ export default class AllJobAndTask extends React.Component {
             <div className="job-card">
             <Card style={{ width: '100%' }}>
                 <Card.Body>
-                    <Card.Title>Task:</Card.Title>
+                    <Card.Title>Task Priority: {task.priority} </Card.Title>
                     <Card.Text>{task.task}</Card.Text>
                         <Card.Text>
                             {task.completed === false ? "Not yet completed" : "Completed"}

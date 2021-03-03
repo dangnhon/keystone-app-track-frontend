@@ -70,6 +70,12 @@ export default class EditTask extends React.Component {
                     <option value={5}>5</option>
                     </Form.Control>
 
+                    <Form.Label>Completed? </Form.Label>
+                    <Form.Control as="select" custom onChange={(e) => this.handleChange(e)} name="completed" defaultValue={this.props.selectedTask.completed} >
+                    <option value={false}>Not Completed</option>
+                    <option value={true}>Completed</option>
+                    </Form.Control>
+
                 </Form.Group>
             </Modal.Body>
             <Modal.Footer>

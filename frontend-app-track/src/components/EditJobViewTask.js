@@ -59,7 +59,6 @@ export default class EditJobViewTask extends React.Component {
                                 {task.completed === false ? "Not yet completed" : "Completed"}
                         </Card.Text>
                     </Card.Body>
-                    <Button variant="primary"  >Complete Task</Button><br></br>
                     <Button variant="primary" >delete</Button>
                 </Card>
                 </div> 

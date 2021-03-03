@@ -19,7 +19,6 @@ import { withRouter } from 'react-router-dom';
     },
     allJobs: [],
     allMeets: [], 
-    //allTask: [], 
     logout: false,
 }
 
@@ -193,6 +192,7 @@ updateNewEvent = (createdEvent) => {
 handleDeleteMeet = (meet) => {
   let meetId = meet.id 
   let updatedMeetArray = this.state.userData.meetups.filter(meet => meet.id !== meetId)
+  let updatedMeetContactArray = this.state.userData.meetup_contacts.filter(contact => contact.meetup.id !== meetId)
   let token = sessionStorage.getItem("token")
   fetch(`http://localhost:3000/meetups/${meetId}`, {
       method: "DELETE",
@@ -207,7 +207,8 @@ handleDeleteMeet = (meet) => {
   this.setState({
     userData: {
       ...this.state.userData, 
-      meetups: updatedMeetArray
+      meetups: updatedMeetArray,
+      meetup_contacts: updatedMeetContactArray
   }
   })
 }
@@ -215,6 +216,7 @@ handleDeleteMeet = (meet) => {
 handleDeleteJob = (job) => {
   let jobId = job.id 
   let updatedJobArray = this.state.userData.jobs.filter(job => job.id !== jobId)
+  let updatedTaskArray = this.state.userData.tasks.filter(task => task.job.id !== jobId)
   let token = sessionStorage.getItem("token")
   fetch(`http://localhost:3000/jobs/${jobId}`, {
       method: "DELETE",
@@ -229,8 +231,59 @@ handleDeleteJob = (job) => {
   this.setState({
     userData: {
       ...this.state.userData, 
-      jobs: updatedJobArray
+      jobs: updatedJobArray,
+      tasks: updatedTaskArray
   }
+  })
+}
+
+handleDeleteSpecificTask = (selectedTask, selectedJob) => {
+  let findTaskArray = this.state.allJobs.find(job => job.id === selectedJob.id)
+  let deletedTaskArray = findTaskArray.tasks.filter(task => task.id !== selectedTask.id)
+  let allJobTask = this.state.allJobs.map(job => job.id === selectedJob.id ? {...job, tasks: deletedTaskArray} : job )
+
+  let updatedTaskArray = this.state.userData.tasks.filter(task => task.id !== selectedTask.id)
+  let token = sessionStorage.getItem("token")
+  fetch(`http://localhost:3000/tasks/${selectedTask.id}`, {
+    method: "DELETE",
+    headers: {
+        Authorization: `bearer ${token}`,
+        "Content-Type": "application/json"
+    }
+  })
+  .then(resp => resp.json())
+  
+  this.setState({
+    userData: {
+      ...this.state.userData,
+      tasks: updatedTaskArray
+  },
+    allJobs: allJobTask
+  })
+}
+
+handleDeleteSpecificContact = (selectedContact, selectedMeet) => {
+  let findContactArray = this.state.allMeets.find(meet => meet.id === selectedMeet.id)
+  let deletedContactArray = findContactArray.meetup_contacts.filter(contact => contact.id !== selectedContact.id)
+  let allMeetContact = this.state.allMeets.map(meet => meet.id === selectedMeet.id ? {...meet, meetup_contacts: deletedContactArray} : meet)
+
+  let updatedContactArray = this.state.userData.meetup_contacts.filter(contact => contact.id !== selectedContact.id)
+  let token = sessionStorage.getItem("token")
+  fetch(`http://localhost:3000/meetup_contacts/${selectedContact.id}`, {
+    method: "DELETE",
+    headers: {
+        Authorization: `bearer ${token}`,
+        "Content-Type": "application/json"
+    }
+  })
+  .then(resp => resp.json())
+  
+  this.setState({
+    userData: {
+      ...this.state.userData,
+      meetup_contacts: updatedContactArray
+  },
+    allMeets: allMeetContact
   })
 }
 
@@ -298,7 +351,8 @@ handleUserSession = (user) => {
      updateOldTask={this.updateOldTask}
      handleDeleteMeet={this.handleDeleteMeet}
      handleDeleteJob={this.handleDeleteJob} 
-     updateOldTask={this.updateOldTask}
+     handleDeleteSpecificTask={this.handleDeleteSpecificTask}
+     handleDeleteSpecificContact={this.handleDeleteSpecificContact}
      updateOldContact={this.updateOldContact} 
      /> : <LoginAndSignup handleUserSession={this.handleUserSession} /> }    
     </div>

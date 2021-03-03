@@ -56,6 +56,8 @@ export default class SuperContainer extends React.Component {
                     updateOldContact={this.props.updateOldContact} 
                     updateOldTask={this.props.updateOldTask}
                     handleDeleteMeet={this.props.handleDeleteMeet} 
+                    handleDeleteSpecificTask={this.props.handleDeleteSpecificTask}
+                    handleDeleteSpecificContact={this.props.handleDeleteSpecificContact}
                     handleDeleteJob={this.props.handleDeleteJob} /> 
                      }} />
 
@@ -83,6 +85,8 @@ export default class SuperContainer extends React.Component {
                     updateOldContact={this.props.updateOldContact}
                     updateOldTask={this.props.updateOldTask}
                     handleDeleteMeet={this.props.handleDeleteMeet}
+                    handleDeleteSpecificTask={this.props.handleDeleteSpecificTask}
+                    handleDeleteSpecificContact={this.props.handleDeleteSpecificContact}
                     handleDeleteJob={this.props.handleDeleteJob} /> 
                      }} />
 

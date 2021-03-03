@@ -59,8 +59,9 @@ export default class EditJobViewTask extends React.Component {
                                 {task.completed === false ? "Not yet completed" : "Completed"}
                         </Card.Text>
                     </Card.Body>
-                    <Button variant="primary" >delete</Button>
+                    
                 </Card>
+                <Button onClick={(e) => this.handleDeleteTask(e, task)} variant="primary" >delete</Button>
                 </div> 
             )
         } else {
@@ -85,12 +86,18 @@ export default class EditJobViewTask extends React.Component {
         .then(this.props.closeEditModal)
     }
 
-    handleDelete = () => {
+    handleDeleteApp = () => {
         let job = this.props.selectedJob
         this.props.handleDeleteJob(job)
         this.props.closeEditModal()
     }
 
+    handleDeleteTask = (e, task) => {
+        let selectedJob = this.props.selectedJob
+        this.props.handleDeleteSpecificTask(task, selectedJob)
+    }
+
+ 
     render() {
         return(
 
@@ -135,7 +142,7 @@ export default class EditJobViewTask extends React.Component {
                 </Modal.Body>
                 <Modal.Footer>
                 <Button variant="primary" onClick={(e) => this.handleSubmitEditJob(e)} type="submit" >Submit Edit</Button>
-                <Button variant="primary" onClick={() => this.handleDelete()} >Delete App</Button>
+                <Button variant="primary" onClick={() => this.handleDeleteApp()} >Delete App</Button>
                 <Button variant="primary" onClick={this.openModal} >New Task</Button>
                 </Modal.Footer>
                 <div className="job-container-child right" >

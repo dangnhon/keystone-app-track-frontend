@@ -79,6 +79,7 @@ export default class AllJobAndTask extends React.Component {
                         userData={this.props.userData} 
                         allJobs={this.props.allJobs} 
                         selectedJob={this.state.selectedJob} 
+                        handleDeleteSpecificTask={this.props.handleDeleteSpecificTask}
                         handleDeleteJob={this.props.handleDeleteJob} /> : null }
 
                 </div>

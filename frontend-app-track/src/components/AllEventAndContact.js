@@ -74,11 +74,11 @@ export default class AllEventAndContact extends React.Component {
                 closeEditModal={this.closeEditModal} 
                 openEdit={this.state.openEdit} 
                 updateOldMeet={this.props.updateOldMeet} 
+                updateOldContact={this.props.updateOldContact}
                 updateNewContact={this.props.updateNewContact}
                 userData={this.props.userData} 
                 allMeets={this.props.allMeets}
                 selectedMeet={this.state.selectedMeet} 
-                allMeetups={this.state.allMeetups} 
                 handleDeleteMeet={this.props.handleDeleteMeet} /> : null }
 
             </div>

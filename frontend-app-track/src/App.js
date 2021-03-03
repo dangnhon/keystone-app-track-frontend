@@ -19,7 +19,7 @@ import { withRouter } from 'react-router-dom';
     },
     allJobs: [],
     allMeets: [], 
-    allTask: [], 
+    //allTask: [], 
     logout: false,
 }
 
@@ -30,8 +30,7 @@ componentDidMount() {
 }
 
 componentDidUpdate(prevProps, prevState) {
-  // if (prevState.userData.jobs !== this.state.userData.jobs || prevState.userData.meetups !== this.state.userData.meetups || prevState.userData.tasks !== this.state.userData.tasks || prevState.allJobs !== this.state.allJobs || prevState.allMeets !== this.state.allMeets) {
-    if (prevState.userData.jobs !== this.state.userData.jobs || prevState.userData.meetups !== this.state.userData.meetups || prevState.userData.tasks !== this.state.userData.tasks ) {
+    if (prevState.userData.jobs !== this.state.userData.jobs || prevState.userData.meetups !== this.state.userData.meetups) {
     this.fetchJob();
     this.fetchMeet() 
   }
@@ -64,7 +63,6 @@ fetchJob = () => {
         Authorization: `bearer ${token}`,
         }})
         .then(resp => resp.json())
-        .then()
         .then(jobs => { 
         this.setState({ allJobs: jobs} )}
       )} 
@@ -79,7 +77,6 @@ fetchJob = () => {
         Authorization: `bearer ${token}`,
         }})
         .then(resp => resp.json())
-        .then()
         .then(meetups => { 
           this.setState({ allMeets: meetups })}
       )}
@@ -124,6 +121,50 @@ updateContactAgain = (createdContact) => {
     userData: {
       ...this.state.userData, 
         meetup_contacts: [createdContact, ...this.state.userData.meetup_contacts]
+    }
+  })
+}
+
+updateOldContact = (updatedContact) => {
+  let findMeetArray = this.state.allMeets.find( meet => meet.id === updatedContact.meetup.id)
+  let deleteContactArray = findMeetArray.meetup_contacts.filter(contact => contact.id !== updatedContact.id)
+  let finalUpdatedContactArray = [updatedContact, ...deleteContactArray]
+  let allMeetContact = this.state.allMeets.map(meet => meet.id === updatedContact.meetup.id ? {...meet, meetup_contacts: finalUpdatedContactArray} : meet )
+  this.setState({
+      allMeets: allMeetContact
+  })
+  this.updateOldContactAgain(updatedContact)
+}
+
+updateOldContactAgain = (updatedContact) => {
+  let allOtherContact = this.state.userData.meetup_contacts.filter(contact => contact.id !== updatedContact.id)
+  let updatedContactArray = [updatedContact, ...allOtherContact]
+  this.setState({
+    userData: {
+      ...this.state.userData, 
+      meetup_contacts: updatedContactArray
+    }
+  })
+}
+
+updateOldTask = (updatedTask) => {
+  let findTaskArray = this.state.allJobs.find(job => job.id === updatedTask.job.id)
+  let deleteTaskArray = findTaskArray.tasks.filter(task => task.id !== updatedTask.id)
+  let finalUpdatedTaskArray = [updatedTask, ...deleteTaskArray]
+  let allJobTask = this.state.allJobs.map(job => job.id === updatedTask.job.id ? {...job, tasks: finalUpdatedTaskArray} : job )
+  this.setState({
+      allJobs: allJobTask
+  })
+  this.updateOldTaskAgain(updatedTask)
+}
+
+updateOldTaskAgain = (updatedTask) => {
+  let allOtherTask = this.state.userData.tasks.filter(task => task.id !== updatedTask.id)
+  let updatedTaskArray = [updatedTask, ...allOtherTask]
+  this.setState({
+    userData: {
+      ...this.state.userData, 
+      tasks: updatedTaskArray
     }
   })
 }
@@ -254,8 +295,11 @@ handleUserSession = (user) => {
      userData={this.state.userData} 
      allJobs={this.state.allJobs}
      allMeets={this.state.allMeets}
+     updateOldTask={this.updateOldTask}
      handleDeleteMeet={this.handleDeleteMeet}
      handleDeleteJob={this.handleDeleteJob} 
+     updateOldTask={this.updateOldTask}
+     updateOldContact={this.updateOldContact} 
      /> : <LoginAndSignup handleUserSession={this.handleUserSession} /> }    
     </div>
     )}

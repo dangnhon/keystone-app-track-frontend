@@ -1,7 +1,6 @@
 import React from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css'
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-
+import { Switch, Route, Link } from "react-router-dom";
 import DynamicPane from './DynamicPane.js'
 import Profile from '../components/Profile.js'
 import Appointment from '../components/Appointment.js'
@@ -54,6 +53,8 @@ export default class SuperContainer extends React.Component {
                     allMeets={this.props.allMeets}
                     updateOldJob={this.props.updateOldJob} 
                     updateOldMeet={this.props.updateOldMeet} 
+                    updateOldContact={this.props.updateOldContact} 
+                    updateOldTask={this.props.updateOldTask}
                     handleDeleteMeet={this.props.handleDeleteMeet} 
                     handleDeleteJob={this.props.handleDeleteJob} /> 
                      }} />
@@ -79,6 +80,8 @@ export default class SuperContainer extends React.Component {
                     allMeets={this.props.allMeets}
                     updateOldJob={this.props.updateOldJob}
                     updateOldMeet={this.props.updateOldMeet}
+                    updateOldContact={this.props.updateOldContact}
+                    updateOldTask={this.props.updateOldTask}
                     handleDeleteMeet={this.props.handleDeleteMeet}
                     handleDeleteJob={this.props.handleDeleteJob} /> 
                      }} />

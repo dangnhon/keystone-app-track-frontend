@@ -2,8 +2,9 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import Modal from 'react-bootstrap/Modal'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/button'
-import {Card} from 'react-bootstrap'
+import { Card } from 'react-bootstrap'
 import NewTask from '../components/NewTask.js'
+import  EditTask from '../components/EditTask.js'
 import React from 'react'
 
 export default class EditJobViewTask extends React.Component {
@@ -20,12 +21,20 @@ export default class EditJobViewTask extends React.Component {
         user_id: this.props.userData.id
         },
         isOpen: false,
-        openEdit: false
+        openEdit: false,
+        selectedTask: {}
     }
 
     openModal = () => this.setState({ isOpen: true })
 
     closeModal = () => this.setState({ isOpen: false })
+
+    openEditModal = (e, task) => {
+        this.setState({ openEdit: true })
+        this.setState({selectedTask: task}) 
+    }
+
+    closeEditModal = () => this.setState({ openEdit: false })
 
     handleChange = (e) => {
         this.setState({
@@ -42,7 +51,7 @@ export default class EditJobViewTask extends React.Component {
             
             return matchJobs.tasks.map(task =>  
                 <div className="job-card">
-                <Card style={{ width: '100%' }}>
+                <Card onClick={(e) => this.openEditModal(e, task)} style={{ width: '100%' }}>
                     <Card.Body>
                         <Card.Title>Task:</Card.Title>
                         <Card.Text>{task.task}</Card.Text>
@@ -50,6 +59,8 @@ export default class EditJobViewTask extends React.Component {
                                 {task.completed === false ? "Not yet completed" : "Completed"}
                         </Card.Text>
                     </Card.Body>
+                    <Button variant="primary"  >Complete Task</Button><br></br>
+                    <Button variant="primary" >delete</Button>
                 </Card>
                 </div> 
             )
@@ -136,7 +147,16 @@ export default class EditJobViewTask extends React.Component {
                     isOpen={this.state.isOpen} 
                     selectedJob={this.props.selectedJob} /> : null }
 
-                    {this.getAllJobTask()}
+                {this.getAllJobTask()}
+
+                { this.state.openEdit ? <EditTask
+                     closeEditModal={this.closeEditModal} 
+                     openEdit={this.state.openEdit} 
+                     selectedJob={this.props.selectedJob}
+                     updateNewTask={this.props.updateNewTask}
+                     updateOldTask={this.props.updateOldTask}
+                     selectedTask={this.state.selectedTask} /> : null }
+
                 </div>
             </Modal>
         )

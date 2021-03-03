@@ -4,6 +4,7 @@ import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/button'
 import {Card} from 'react-bootstrap'
 import NewContact from '../components/NewContact.js'
+import EditContact from '../components/EditContact.js'
 import React from 'react'
 
 export default class EditMeetViewContact extends React.Component {
@@ -16,12 +17,20 @@ export default class EditMeetViewContact extends React.Component {
             user_id: this.props.userData.id 
         },
         isOpen: false,
-        openEdit: false
+        openEdit: false,
+        selectedContact: {} 
     }
 
     openModal = () => this.setState({ isOpen: true })
 
     closeModal = () => this.setState({ isOpen: false })
+
+    openEditModal = (e, contact) => {
+        this.setState({ openEdit: true })
+        this.setState({selectedContact: contact}) 
+    }
+
+    closeEditModal = () => this.setState({ openEdit: false })
 
     handleChange = (e) => {
         this.setState({
@@ -33,12 +42,12 @@ export default class EditMeetViewContact extends React.Component {
     }
 
     getAllMeetContacts = () => {
-        let matchMeets = this.props.allMeets.find(job => job.id === this.props.selectedMeet.id)
+        let matchMeets = this.props.allMeets.find(meet => meet.id === this.props.selectedMeet.id)
         if (matchMeets.meetup_contacts.length !== 0) {
             
             return matchMeets.meetup_contacts.map(contact =>  
                 <div className="job-card">
-                <Card style={{ width: '100%' }}>
+                <Card onClick={(e) => this.openEditModal(e, contact)} style={{ width: '100%' }}>
                     <Card.Body>
                         <Card.Title>Contacts:</Card.Title>
                         <Card.Text>{contact.name}</Card.Text>
@@ -117,7 +126,15 @@ export default class EditMeetViewContact extends React.Component {
                     isOpen={this.state.isOpen} 
                     selectedMeet={this.props.selectedMeet} /> : null }
 
-                    {this.getAllMeetContacts()}
+                {this.getAllMeetContacts()}
+
+                { this.state.openEdit ? <EditContact
+                    closeEditModal={this.closeEditModal} 
+                    openEdit={this.state.openEdit}
+                    updateOldContact={this.props.updateOldContact}
+                    selectedMeet={this.props.selectedMeet}
+                    selectedContact={this.state.selectedContact} /> : null }
+
                 </div>
         </Modal>
         )

@@ -46,7 +46,7 @@ export default class EditContact extends React.Component {
             <Modal 
             aria-labelledby="contained-modal-title-vcenter"
             centered 
-            size="sm"
+            size="md"
             className="new-task"
             show={this.props.openEdit} 
             onHide={this.props.closeEditModal}>

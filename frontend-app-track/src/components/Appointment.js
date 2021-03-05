@@ -70,7 +70,6 @@ function Appointment() {
                   })
                   request.execute(event => {
                        window.open(event.htmlLink)
-                        console.log(event)
                   })
             })
         })

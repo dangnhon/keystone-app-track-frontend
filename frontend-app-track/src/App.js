@@ -202,7 +202,7 @@ handleDeleteMeet = (meet) => {
       }
   })
   .then(resp => resp.json())
-  .then(message => alert("You've deleted a Meetup!"))
+  //.then(message => alert("You've deleted a Meetup!"))
 
   this.setState({
     userData: {
@@ -226,7 +226,7 @@ handleDeleteJob = (job) => {
       }
   })
   .then(resp => resp.json())
-  .then(message => alert("You've deleted a job app!"))
+  //.then(message => alert("You've deleted a job app!"))
 
   this.setState({
     userData: {
@@ -316,7 +316,6 @@ deleteUser = () => {
 }
 
 logout = () => {
-  alert("Come back soon!")
   sessionStorage.clear() 
   this.setState({
     logout: true 

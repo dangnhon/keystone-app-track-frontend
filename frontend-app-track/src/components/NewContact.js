@@ -46,7 +46,7 @@ export default class NewContact extends React.Component {
             <Modal 
             aria-labelledby="contained-modal-title-vcenter"
             centered 
-            size="sm"
+            size="md"
             className="new-task"
             show={this.props.isOpen} 
             onHide={this.props.closeModal}>

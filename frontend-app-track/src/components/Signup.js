@@ -7,7 +7,8 @@ export default class SignUpForm extends Component {
             email: "", 
             password: "", 
             name: ""
-        }
+        },
+        error: "" 
     }
 
     handleChangeEmail = (e) => {
@@ -48,7 +49,15 @@ export default class SignUpForm extends Component {
             body: JSON.stringify(newUser)
         })
         .then(resp => resp.json())
-        .then(registeredUser => this.props.handleUserSession(registeredUser))
+        .then(user => {
+            if (user.error) {
+                this.setState({
+                    error: user.error 
+                })
+            } else {
+                this.props.handleUserSession(user)
+            }
+        })
     }
     render() {
         return (
@@ -60,7 +69,7 @@ export default class SignUpForm extends Component {
 
                     <div className="form-group">
                         <label>Email</label>
-                        <input onChange={(e) => this.handleChangeEmail(e)} type="text" className="form-control" placeholder="Enter Email" />
+                        <input onChange={(e) => this.handleChangeEmail(e)} type="email" className="form-control" placeholder="Enter Email" />
                     </div>
 
                     <div className="form-group">
@@ -76,7 +85,8 @@ export default class SignUpForm extends Component {
                     <button type="submit" className="btn btn-dark btn-lg btn-block">Sign Up</button><br></br>
                     <button  onClick={this.props.toggleForm} className="btn btn-dark btn-lg btn-block">Already registered?</button>
 
-                </form>            
+                </form> 
+                {this.state.error ? <h3>{this.state.error}</h3> : null}           
             </div> 
         );
     }

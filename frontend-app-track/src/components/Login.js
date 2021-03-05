@@ -5,7 +5,8 @@ export default class Login extends React.Component {
 
     state = {
             email: "",
-            password: ""
+            password: "",
+            error: "" 
     }
 
     handleChangeEmail = (e) => {
@@ -34,7 +35,14 @@ export default class Login extends React.Component {
         })
         .then(resp => resp.json())
         .then(user => {
-            user.message === "Invalid email or password" ? alert("Invalid email or password") : this.props.handleUserSession(user)})
+            if (user.message) {
+                this.setState({
+                    error: user.message 
+                })
+            } else {
+                this.props.handleUserSession(user)
+            }
+        })
     }
 
     render() {
@@ -58,6 +66,7 @@ export default class Login extends React.Component {
                 <button  onClick={this.props.toggleForm} className="btn btn-dark btn-lg btn-block">Create an Account?</button>
 
             </form>
+            {this.state.error ? <h3>{this.state.error}</h3> : null}
             </div>
         );
     }

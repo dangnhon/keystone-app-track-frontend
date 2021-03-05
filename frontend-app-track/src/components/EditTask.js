@@ -46,11 +46,10 @@ export default class EditTask extends React.Component {
             <Modal 
             aria-labelledby="contained-modal-title-vcenter"
             centered 
-            size="sm"
+            size="md"
             className="new-task"
             show={this.props.openEdit} 
             onHide={this.props.closeEditModal}>
-
 
             <Modal.Header closeButton>
             <Modal.Title id="contained-modal-title-vcenter">Edit Task</Modal.Title>

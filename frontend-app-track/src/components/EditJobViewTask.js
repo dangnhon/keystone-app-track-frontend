@@ -152,7 +152,7 @@ export default class EditJobViewTask extends React.Component {
                     closeModal={this.closeModal} 
                     isOpen={this.state.isOpen} 
                     selectedJob={this.props.selectedJob} /> : null }
-
+                
                 {this.getAllJobTask()}
 
                 { this.state.openEdit ? <EditTask

@@ -28,7 +28,7 @@ export default class EditContact extends React.Component {
         e.preventDefault() 
         let editedContact = this.state.contact
         let token = sessionStorage.getItem("token")
-        fetch(`http://localhost:3000/meetup_contacts/${this.props.selectedMeet.id}`, {
+        fetch(`http://localhost:3000/meetup_contacts/${this.props.selectedContact.id}`, {
             method: "PATCH",
             headers: {
                 Authorization: `bearer ${token}`,

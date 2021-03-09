@@ -74,7 +74,7 @@ export default class AllJobAndTask extends React.Component {
             let sortedTask = this.props.userData.tasks.filter(task => task.priority === parseInt(this.state.priority)) 
         return sortedTask.map(task => 
             <div className="job-card">
-                <Card text="black" style={{ width: '100%' }}>
+                <Card className="task-cards" text="black" style={{ width: '100%' }}>
                     <Card.Body>
                         <Card.Title>Task Priority: {task.priority} </Card.Title>
                         <Card.Text>{task.task}</Card.Text>
@@ -121,7 +121,7 @@ export default class AllJobAndTask extends React.Component {
                 <div className="job-container-child right">
                     
                     <Form.Group className="sort" >
-                        <Form.Label>Priority Sort: </Form.Label>
+                        <Form.Label>Sort Task: </Form.Label>
                         <Form.Control as="select" name="priority" onChange={this.handleChange} defaultValue="All Task" >
                         <option value="All Task">See All Task</option>
                         <option value={1}>1</option>

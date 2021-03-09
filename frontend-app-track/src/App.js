@@ -125,6 +125,7 @@ updateContactAgain = (createdContact) => {
 }
 
 updateOldContact = (updatedContact) => {
+  debugger
   let findMeetArray = this.state.allMeets.find( meet => meet.id === updatedContact.meetup.id)
   let deleteContactArray = findMeetArray.meetup_contacts.filter(contact => contact.id !== updatedContact.id)
   let finalUpdatedContactArray = [updatedContact, ...deleteContactArray]

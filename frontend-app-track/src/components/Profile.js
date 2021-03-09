@@ -1,4 +1,5 @@
 import React from "react";
+import Button from 'react-bootstrap/button'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
 export default class Profile extends React.Component {
@@ -62,8 +63,8 @@ export default class Profile extends React.Component {
                     <label>Name</label>
                     <input onChange={(e) => this.handleChangeName(e)} type="tag" className="form-control" defaultValue={this.props.userData.name} />
                 </div>
-                <button type="submit" className="btn btn-dark btn-lg btn-block">Update Profile</button><br></br>
-                <button onClick={() => this.props.deleteUser()} className="btn btn-dark btn-lg btn-block">Delete Account?</button><br></br>
+                <Button type="submit" className="btn btn-md btn-block">Update Profile</Button><br></br>
+                <Button onClick={() => this.props.deleteUser()} className="btn btn-md btn-block">Delete Account?</Button><br></br>
 
             </form>
             </div> 

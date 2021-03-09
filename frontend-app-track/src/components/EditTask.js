@@ -78,7 +78,7 @@ export default class EditTask extends React.Component {
                 </Form.Group>
             </Modal.Body>
             <Modal.Footer>
-                <Button variant="primary" onClick={(e) => this.handleSubmitNewEditTask(e)} type="submit" >Submit</Button>
+                <Button variant="primary" onClick={(e) => this.handleSubmitNewEditTask(e)} type="submit" >Submit Edit</Button>
             </Modal.Footer>
         </Modal>
         )

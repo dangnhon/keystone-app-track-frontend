@@ -76,7 +76,7 @@ function Appointment() {
     }
        
     return(
-        <div> 
+        <div className="appoint"> 
             <Form.Group >
 
                 <Form.Label>Summary: </Form.Label>
@@ -87,19 +87,19 @@ function Appointment() {
 
                 <Form.Label>Description: </Form.Label>
                 <Form.Control type="text" onChange={(e) => handleChange(e)} name="description"  placeholder="Enter description"/> 
-                <div className='start-time'>
-                    <h3>Start Time and Date: </h3>
+                <div className='time'>
+                    <h5>Start Time and Date: </h5>
                     <DateTimePicker onChange={changeStart} name="start" value={value} />
                 </div>
                 
-                <div className='end-time'>
-                    <h3>End Time and Date</h3>
+                <div className='time'>
+                    <h5>End Time and Date</h5>
                     <DateTimePicker onChange={changeEnd} name="end" value={valueE} />
                 </div>            
                                
                                
             </Form.Group>
-                <Button variant="primary" onClick={handleSubmit} type="submit" >Submit</Button>
+                <Button onClick={handleSubmit} className="btn btn-md btn-block" type="submit" >Submit</Button>
         </div>   
     )
 }

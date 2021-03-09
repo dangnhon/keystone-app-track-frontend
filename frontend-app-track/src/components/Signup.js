@@ -80,7 +80,7 @@ export default class SignUpForm extends Component {
                     <div className="form-group">
                         <label>Name</label>
                         <input onChange={(e) => this.handleChangeName(e)} type="name" className="form-control" placeholder="Enter  Full Name" />
-                    </div>
+                    </div><br></br>
 
                     <button type="submit" className="btn btn-dark btn-lg btn-block">Sign Up</button><br></br>
                     <button  onClick={this.props.toggleForm} className="btn btn-dark btn-lg btn-block">Already registered?</button>

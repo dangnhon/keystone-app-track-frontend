@@ -19,9 +19,9 @@ export default class LoginAndSignup extends React.Component {
 
     render() {
         return (
-            <div>
+            <div className="login-signup-container">
                 <div> 
-                <h1>Welcome to App Track</h1>
+                <h1>Welcome to AppTrack</h1>
                 <p>Please sign in or register below</p>
                 </div>
 

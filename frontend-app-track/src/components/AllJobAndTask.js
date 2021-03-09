@@ -1,6 +1,7 @@
 import React from 'react' 
 import 'bootstrap/dist/css/bootstrap.min.css'
 import Form from 'react-bootstrap/Form'
+import Button from 'react-bootstrap/button'
 import {Card} from 'react-bootstrap'
 import AddNewJob from '../components/AddNewJob.js'
 import EditJobViewTask from '../components/EditJobViewTask.js'
@@ -29,7 +30,7 @@ export default class AllJobAndTask extends React.Component {
     getAllJob = () => {
        return this.props.userData.jobs.map(job => 
             <div className="job-card">
-                <Card  className={job.id} onClick={(e) => this.openEditModal(e, job)} style={{ width: '100%' }}>
+                <Card text="black" className="job-cards" onClick={(e) => this.openEditModal(e, job)} style={{ width: '100%' }}>
                     <Card.Body >
                         <Card.Title>Applied To: {job.company_name}</Card.Title>
                             <Card.Text>
@@ -44,7 +45,7 @@ export default class AllJobAndTask extends React.Component {
     getAllTask = () => {
         return this.props.userData.tasks.map(task => 
             <div className="job-card">
-                <Card style={{ width: '100%' }}>
+                <Card className="task-cards" text="black" style={{ width: '100%' }}>
                     <Card.Body>
                         <Card.Title>Task Priority: {task.priority} </Card.Title>
                         <Card.Text>{task.task}</Card.Text>
@@ -73,7 +74,7 @@ export default class AllJobAndTask extends React.Component {
             let sortedTask = this.props.userData.tasks.filter(task => task.priority === parseInt(this.state.priority)) 
         return sortedTask.map(task => 
             <div className="job-card">
-                <Card style={{ width: '100%' }}>
+                <Card text="black" style={{ width: '100%' }}>
                     <Card.Body>
                         <Card.Title>Task Priority: {task.priority} </Card.Title>
                         <Card.Text>{task.task}</Card.Text>
@@ -93,7 +94,7 @@ export default class AllJobAndTask extends React.Component {
         return(
             <div className="job-dynamic-container">
                 <div className="job-container-child left">
-                    <button onClick={this.openModal} className="add-new">Add New Job</button>
+                    <Button onClick={this.openModal} className="add-new">Add New Job</Button>
 
                     { this.state.isOpen ? <AddNewJob 
                         closeModal={this.closeModal} 
@@ -119,8 +120,8 @@ export default class AllJobAndTask extends React.Component {
 
                 <div className="job-container-child right">
                     
-                    <Form.Group>
-                        <Form.Label>Priority: </Form.Label>
+                    <Form.Group className="sort" >
+                        <Form.Label>Priority Sort: </Form.Label>
                         <Form.Control as="select" name="priority" onChange={this.handleChange} defaultValue="All Task" >
                         <option value="All Task">See All Task</option>
                         <option value={1}>1</option>
@@ -129,7 +130,7 @@ export default class AllJobAndTask extends React.Component {
                         <option value={4}>4</option>
                         <option value={5}>5</option>
                         </Form.Control>
-                        <button className="add-new" onClick={this.sortAllTask} >Sort</button>
+                        {/* <button className="add-new" onClick={this.sortAllTask} >Sort</button> */}
                     </Form.Group>
                 
                     {this.state.beginSort ? this.sortAllTask() : this.getAllTask()}

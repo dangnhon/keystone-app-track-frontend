@@ -47,15 +47,15 @@ export default class AddNewJob extends React.Component {
         <Modal 
             aria-labelledby="contained-modal-title-vcenter"
             centered
+            text="white"
             size="lg"
             show={this.props.isOpen} 
             onHide={this.props.closeModal}>
-                
 
             <Modal.Header closeButton>
             <Modal.Title id="contained-modal-title-vcenter">Track a New Job</Modal.Title>
             </Modal.Header>
-            <Modal.Body>
+            <Modal.Body bg="info">
                 <Form.Group >
 
                     <Form.Label>Company Name: </Form.Label>

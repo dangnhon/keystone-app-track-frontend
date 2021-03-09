@@ -47,7 +47,7 @@ export default class EditMeetViewContact extends React.Component {
             
             return matchMeets.meetup_contacts.map(contact =>  
                 <div className="job-card">
-                <Card onClick={(e) => this.openEditModal(e, contact)} style={{ width: '100%' }}>
+                <Card className="contact-cards" text="black" onClick={(e) => this.openEditModal(e, contact)} style={{ width: '100%' }}>
                     <Card.Body>
                         <Card.Title>Contacts:</Card.Title>
                         <Card.Text>{contact.name}</Card.Text>
@@ -57,7 +57,7 @@ export default class EditMeetViewContact extends React.Component {
                         </Card.Text>
                     </Card.Body>
                 </Card>
-                <Button onClick={(e) => this.handleDeleteContact(e, contact)} variant="primary" >delete</Button>
+                <Button onClick={(e) => this.handleDeleteContact(e, contact)} variant="primary" className="btn-block" >delete</Button>
                 </div> 
             )
         } else {
@@ -124,15 +124,13 @@ export default class EditMeetViewContact extends React.Component {
                 <Button variant="primary" onClick={() => this.handleDeleteMeet()} >Delete Meetup</Button>
                 <Button variant="primary" onClick={this.openModal} >New Contact</Button>
             </Modal.Footer>
-                <div className="job-container-child right" >
+                <div className="contact-container-child right" >
 
                 { this.state.isOpen ? <NewContact
                     updateNewContact={this.props.updateNewContact} 
                     closeModal={this.closeModal} 
                     isOpen={this.state.isOpen} 
                     selectedMeet={this.props.selectedMeet} /> : null }
-
-                {this.getAllMeetContacts()}
 
                 { this.state.openEdit ? <EditContact
                     closeEditModal={this.closeEditModal} 
@@ -141,6 +139,10 @@ export default class EditMeetViewContact extends React.Component {
                     selectedMeet={this.props.selectedMeet}
                     selectedContact={this.state.selectedContact} /> : null }
 
+                </div>
+                
+                <div className="contact-card-container">
+                {this.getAllMeetContacts()}
                 </div>
         </Modal>
         )

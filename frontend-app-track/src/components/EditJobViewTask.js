@@ -51,7 +51,7 @@ export default class EditJobViewTask extends React.Component {
             
             return matchJobs.tasks.map(task =>  
                 <div className="job-card">
-                <Card onClick={(e) => this.openEditModal(e, task)} style={{ width: '100%' }}>
+                <Card className="task-cards" text="black" onClick={(e) => this.openEditModal(e, task)} style={{ width: '100%' }}>
                     <Card.Body>
                         <Card.Title>Task:</Card.Title>
                         <Card.Text>{task.task}</Card.Text>
@@ -59,9 +59,8 @@ export default class EditJobViewTask extends React.Component {
                                 {task.completed === false ? "Not yet completed" : "Completed"}
                         </Card.Text>
                     </Card.Body>
-                    
                 </Card>
-                <Button onClick={(e) => this.handleDeleteTask(e, task)} variant="primary" >delete</Button>
+                <Button onClick={(e) => this.handleDeleteTask(e, task)} variant="primary" className="btn-block" >delete</Button>
                 </div> 
             )
         } else {
@@ -99,11 +98,11 @@ export default class EditJobViewTask extends React.Component {
 
  
     render() {
-        return(
-
+        return( 
             <Modal 
                 aria-labelledby="contained-modal-title-vcenter"
                 centered
+                // scrollable
                 size="lg"
                 show={this.props.openEdit} 
                 onHide={this.props.closeEditModal}>
@@ -145,15 +144,15 @@ export default class EditJobViewTask extends React.Component {
                 <Button variant="primary" onClick={() => this.handleDeleteApp()} >Delete App</Button>
                 <Button variant="primary" onClick={this.openModal} >New Task</Button>
                 </Modal.Footer>
-                <div className="job-container-child right" >
+                
+
+                <div className="task-container-child right" >
 
                 { this.state.isOpen ? <NewTask
                     updateNewTask={this.props.updateNewTask} 
                     closeModal={this.closeModal} 
                     isOpen={this.state.isOpen} 
                     selectedJob={this.props.selectedJob} /> : null }
-                
-                {this.getAllJobTask()}
 
                 { this.state.openEdit ? <EditTask
                      closeEditModal={this.closeEditModal} 
@@ -163,6 +162,10 @@ export default class EditJobViewTask extends React.Component {
                      updateOldTask={this.props.updateOldTask}
                      selectedTask={this.state.selectedTask} /> : null }
 
+                </div>
+
+                <div className="task-card-container">
+                    {this.getAllJobTask()}
                 </div>
             </Modal>
         )

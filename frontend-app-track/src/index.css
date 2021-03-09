@@ -98,6 +98,10 @@ body, html, .App, #root, .outer {
   border-color: black !important;
 }
 
+/* .modal-body {
+  max-height: 550px !important;
+} */
+
 .h5 {
  font-size: 1rem !important;
  font-weight: bold !important;
@@ -105,6 +109,11 @@ body, html, .App, #root, .outer {
 
 .modal-footer {
   border-color: black !important;
+}
+
+.modal-body {
+  max-height: 500px !important;
+  overflow: auto !important
 }
 
 .btn {
@@ -192,28 +201,28 @@ body, html, .App, #root, .outer {
 }
 
 .task-card-container {
-  height: 300px !important;
+  height: 500px !important;
   overflow: auto !important;
   text-align: center;
-  -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none;  /* Firefox */
+  /* -ms-overflow-style: none; 
+  scrollbar-width: none;   */
 }
 
 .contact-card-container {
-  height: 300px !important;
+  height: 500px !important;
   overflow: auto !important;
   text-align: center;
-  -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none;  /* Firefox */
+  /* -ms-overflow-style: none; 
+  scrollbar-width: none;   */
 }
 
-.contact-card-container::-webkit-scrollbar {
+/* .contact-card-container::-webkit-scrollbar {
   display: none;
 }
 
 .task-card-container::-webkit-scrollbar {
   display: none;
-}
+} */
 
 .login-signup-container {
   margin-left: 30%;

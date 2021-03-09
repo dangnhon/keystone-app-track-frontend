@@ -45,9 +45,9 @@ export default class AddNewEvent extends React.Component {
             show={this.props.isEventOpen} 
             onHide={this.props.closeModal}>
                 
-            <Modal.Header closeButton>
+            {/* <Modal.Header closeButton>
             <Modal.Title id="contained-modal-title-vcenter">Add a New Meetup</Modal.Title>
-            </Modal.Header>
+            </Modal.Header> */}
             <Modal.Body>
                 <Form.Group >
 

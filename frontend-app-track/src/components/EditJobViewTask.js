@@ -106,10 +106,10 @@ export default class EditJobViewTask extends React.Component {
                 size="lg"
                 show={this.props.openEdit} 
                 onHide={this.props.closeEditModal}>
-
+{/* 
                 <Modal.Header closeButton>
                 <Modal.Title id="contained-modal-title-vcenter">Edit Job</Modal.Title>
-                </Modal.Header>
+                </Modal.Header> */}
                  <Modal.Body>
                 <Form.Group >
 

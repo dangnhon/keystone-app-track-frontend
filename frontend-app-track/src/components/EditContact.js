@@ -52,9 +52,9 @@ export default class EditContact extends React.Component {
             onHide={this.props.closeEditModal}>
 
 
-            <Modal.Header closeButton>
-            <Modal.Title id="contained-modal-title-vcenter">Edit Task</Modal.Title>
-            </Modal.Header>
+            {/* <Modal.Header closeButton>
+            <Modal.Title id="contained-modal-title-vcenter">Edit Contact</Modal.Title>
+            </Modal.Header> */}
             <Modal.Body>
                 <Form.Group >
 
@@ -70,7 +70,7 @@ export default class EditContact extends React.Component {
                 </Form.Group>
             </Modal.Body>
             <Modal.Footer>
-                <Button variant="primary" onClick={(e) => this.handleSubmitNewEditContact(e)} type="submit" >Submit</Button>
+                <Button variant="primary" onClick={(e) => this.handleSubmitNewEditContact(e)} type="submit" >Submit Edit</Button>
             </Modal.Footer>
         </Modal>
         )

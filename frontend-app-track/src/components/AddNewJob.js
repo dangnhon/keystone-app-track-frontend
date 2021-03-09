@@ -52,9 +52,9 @@ export default class AddNewJob extends React.Component {
             show={this.props.isOpen} 
             onHide={this.props.closeModal}>
 
-            <Modal.Header closeButton>
+            {/* <Modal.Header closeButton>
             <Modal.Title id="contained-modal-title-vcenter">Track a New Job</Modal.Title>
-            </Modal.Header>
+            </Modal.Header> */}
             <Modal.Body bg="info">
                 <Form.Group >
 

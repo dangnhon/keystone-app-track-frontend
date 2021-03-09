@@ -49,8 +49,8 @@ export default class EditMeetViewContact extends React.Component {
                 <div className="job-card">
                 <Card className="contact-cards" text="black" onClick={(e) => this.openEditModal(e, contact)} style={{ width: '100%' }}>
                     <Card.Body>
-                        <Card.Title>Contacts:</Card.Title>
-                        <Card.Text>{contact.name}</Card.Text>
+                        {/* <Card.Title>Contacts:</Card.Title> */}
+                        <Card.Title>{contact.name}</Card.Title>
                             <Card.Text>
                                 {contact.email}<br></br>
                                 {contact.phone_number}

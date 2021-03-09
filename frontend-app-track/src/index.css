@@ -25,7 +25,8 @@ body {
   font-weight: 400;
   font-family: sans-serif;
   background-color: #eec0c6;
-  background-image: linear-gradient(315deg, #e3f5e9 19%, #f8f1d8 74%, #fee4d2 26%);
+  /* background-image: linear-gradient(315deg, #e3f5e9 19%, #f8f1d8 39%, #fee4d2 26%); */
+  background-image: linear-gradient(160deg, #e3f5e9 19%, #f8f1d8 74%, #fee4d2 26%, #dfecfa 19%)
   
 }
 
@@ -57,6 +58,7 @@ body, html, .App, #root, .outer {
   padding: 40px 55px 45px 55px;
   border-radius: 15px;
   transition: all .3s;
+  background-image: linear-gradient(160deg, #e3f5e9 19%, #f8f1d8 74%, #fee4d2 26%, #dfecfa 19%);
 }
 
 .outer .form-control:focus {
@@ -85,7 +87,8 @@ body, html, .App, #root, .outer {
   border: 3px solid rgb(227, 222, 222);
   border-radius: 15px;
   text-align: center;
-  box-shadow: 3px 3px #c5c6c7
+  box-shadow: 3px 3px #c5c6c7;
+  background: whitesmoke !important;
 }
 
 .container-child:first-child {
@@ -96,10 +99,6 @@ body, html, .App, #root, .outer {
   background: #c5c6c7 !important;
   border-color: black !important;
 }
-
-/* .modal-body {
-  max-height: 550px !important;
-} */
 
 .h5 {
  font-size: 1rem !important;
@@ -152,6 +151,7 @@ body, html, .App, #root, .outer {
   scrollbar-width: none;  /* Firefox */
   border: 3px solid rgb(227, 222, 222);
   box-shadow: 3px 3px #c5c6c7;
+  background: whitesmoke !important;
 }
 
 .job-container-child::-webkit-scrollbar {

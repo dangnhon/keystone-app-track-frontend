@@ -53,7 +53,7 @@ export default class EditJobViewTask extends React.Component {
                 <div className="job-card">
                 <Card className="task-cards" text="black" onClick={(e) => this.openEditModal(e, task)} style={{ width: '100%' }}>
                     <Card.Body>
-                        <Card.Title>Task:</Card.Title>
+                        <Card.Title>Task Prioity: {task.priority} </Card.Title>
                         <Card.Text>{task.task}</Card.Text>
                             <Card.Text>
                                 {task.completed === false ? "Not yet completed" : "Completed"}

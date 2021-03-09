@@ -82,8 +82,8 @@ export default class SignUpForm extends Component {
                         <input onChange={(e) => this.handleChangeName(e)} type="name" className="form-control" placeholder="Enter  Full Name" />
                     </div><br></br>
 
-                    <button type="submit" className="btn btn-dark btn-lg btn-block">Sign Up</button><br></br>
-                    <button  onClick={this.props.toggleForm} className="btn btn-dark btn-lg btn-block">Already registered?</button>
+                    <button type="submit" className="btn btn-dark btn-md btn-block">Sign Up</button><br></br>
+                    <button  onClick={this.props.toggleForm} className="btn btn-dark btn-md btn-block">Already Registered?</button>
 
                 </form> 
                 {this.state.error ? <h3>{this.state.error}</h3> : null}           

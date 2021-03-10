@@ -70,6 +70,7 @@
     5. React Alice Carousel @ https://www.npmjs.com/package/react-alice-carousel
 
 # Packages used in the development of the backend application:
+
     1. JWT @ https://jwt.io/
 
     2. Rails API Serializer @ https://github.com/rails-api/active_model_serializers

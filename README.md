@@ -53,7 +53,7 @@
 
     5. Search through all of their contacts by name. 
 
-    6. Create a google calendar appointment from the appointment tab and have that sent directly imported into their calendar. 
+    6. Create a google calendar appointment from the appointment tab and have that directly imported into their calendar. 
 
     7. Keep track and manage all of their data at a glance with as few clicks as possible. 
 

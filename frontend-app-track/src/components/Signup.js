@@ -63,27 +63,27 @@ export default class SignUpForm extends Component {
         return (
             <div className="form-container">
 
-                <h3>Sign Up</h3>
+                <p>Sign Up</p>
 
                 <form onSubmit={(e) => this.handleSubmit(e)} >
 
                     <div className="form-group">
-                        <label>Email</label>
-                        <input onChange={(e) => this.handleChangeEmail(e)} type="email" className="form-control" placeholder="Enter Email" />
+                        {/* <label>Email</label> */}
+                        <input onChange={(e) => this.handleChangeEmail(e)} type="email" className="form-control" placeholder="Email..." />
                     </div>
 
                     <div className="form-group">
-                        <label>Password</label>
-                        <input onChange={(e) => this.handleChangePassword(e)} type="password" className="form-control" placeholder="Enter Password" />
+                        {/* <label>Password</label> */}
+                        <input onChange={(e) => this.handleChangePassword(e)} type="password" className="form-control" placeholder="Password..." />
                     </div>
 
                     <div className="form-group">
-                        <label>Name</label>
-                        <input onChange={(e) => this.handleChangeName(e)} type="name" className="form-control" placeholder="Enter  Full Name" />
-                    </div><br></br>
+                        {/* <label>Name</label> */}
+                        <input onChange={(e) => this.handleChangeName(e)} type="name" className="form-control" placeholder="Full Name..." />
+                    </div>
 
-                    <button type="submit" className="btn btn-dark btn-md btn-block">Sign Up</button><br></br>
-                    <button  onClick={this.props.toggleForm} className="btn btn-dark btn-md btn-block">Already Registered?</button>
+                    <button type="submit" className="btn btn-dark btn-sm btn-block">Sign Up</button>
+                    <button  onClick={this.props.toggleForm} className="btn btn-dark btn-sm btn-block">Already Registered?</button>
 
                 </form> 
                 {this.state.error ? <h3>{this.state.error}</h3> : null}           

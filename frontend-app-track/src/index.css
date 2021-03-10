@@ -133,7 +133,7 @@ body, html, .App, #root, .outer {
   font-size: 1rem;
   font-weight: bold;
 }
-/* Use this to make the right container for events and contacts the same */
+
 .job-dynamic-container {
   display: flex;
   height: 90%;
@@ -161,7 +161,6 @@ body, html, .App, #root, .outer {
 .job-container-child:first-child {
   margin-right: 25px;
 }
-/* Use this to make the right container for events and contacts the same */
 
 .job-card {
   padding: 12px !important;
@@ -215,20 +214,6 @@ body, html, .App, #root, .outer {
   scrollbar-width: none;   */
 }
 
-/* .contact-card-container::-webkit-scrollbar {
-  display: none;
-}
-
-.task-card-container::-webkit-scrollbar {
-  display: none;
-} */
-
-.login-signup-container {
-  margin-left: 30%;
-  width: 40%;
-  text-align: center;
-}
-
 .profile-container {
   margin-left: 30%;
   width: 40%;
@@ -242,5 +227,23 @@ body, html, .App, #root, .outer {
 }
 
 .time {
-  margin-top: 8px;
+  margin-top: 27px;
 }
+
+.login-signup-container {
+  margin-left: 30%;
+  width: 40%;
+  text-align: center;
+}
+
+.sliderimg{
+  margin-top: 3%;
+  width: 100%;
+  height: 60%;
+  object-fit: cover
+}
+
+.title-page {
+  margin-top: 1.5%;
+}
+

@@ -10,7 +10,6 @@ export default class DynamicPane extends React.Component {
             <div className="dynamic-container">
 
                 <div className="container-child left"> 
-
                     <AllJobAndTask  
                     updateNewJob={this.props.updateNewJob} 
                     updateNewTask={this.props.updateNewTask} 

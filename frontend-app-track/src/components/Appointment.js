@@ -86,7 +86,7 @@ function Appointment() {
                 <Form.Control type="text" onChange={(e) => handleChange(e)} name="location"  placeholder="Enter location..."/> 
 
                 <Form.Label>Description: </Form.Label>
-                <Form.Control type="text" onChange={(e) => handleChange(e)} name="description"  placeholder="Enter description"/> 
+                <Form.Control type="text" onChange={(e) => handleChange(e)} name="description"  placeholder="Enter description..."/> 
                 <div className='time'>
                     <h5>Start Time and Date: </h5>
                     <DateTimePicker onChange={changeStart} name="start" value={value} />

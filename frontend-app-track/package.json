@@ -10,6 +10,7 @@
     "gapi": "^0.0.3",
     "moment": "^2.29.1",
     "react": "^17.0.1",
+    "react-alice-carousel": "^2.4.0",
     "react-bootstrap": "^1.5.0",
     "react-datetime-picker": "^3.1.0",
     "react-dom": "^17.0.1",

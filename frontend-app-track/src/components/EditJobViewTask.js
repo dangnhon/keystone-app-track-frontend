@@ -114,7 +114,7 @@ export default class EditJobViewTask extends React.Component {
                 <Form.Group >
 
                     <Form.Label>Status: </Form.Label>
-                    <Form.Control as="select" custom onChange={(e) => this.handleChange(e)} name="status" >
+                    <Form.Control as="select" custom onChange={(e) => this.handleChange(e)} name="status" defaultValue={this.props.selectedJob.status} >
                     <option value={false}>In Review</option>
                     <option value={true}>Offer Received</option>
                     </Form.Control>

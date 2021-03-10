@@ -4,7 +4,7 @@ const About = () => {
     return(
         <div className="about-container">
             <h2>About Us!</h2>
-            <p>Welcome to App Track, a place to keep track of applications and networking events.</p>
+            <p>Welcome to AppTrack, a place to keep track of job applications and networking events.</p>
         </div>
     )
 }

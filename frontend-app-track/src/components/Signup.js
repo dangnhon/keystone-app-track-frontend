@@ -69,17 +69,17 @@ export default class SignUpForm extends Component {
 
                     <div className="form-group">
                         {/* <label>Email</label> */}
-                        <input onChange={(e) => this.handleChangeEmail(e)} type="email" className="form-control" placeholder="Email..." />
+                        <input onChange={(e) => this.handleChangeEmail(e)} type="email" className="form-control" placeholder="Enter Your Email..." />
                     </div>
 
                     <div className="form-group">
                         {/* <label>Password</label> */}
-                        <input onChange={(e) => this.handleChangePassword(e)} type="password" className="form-control" placeholder="Password..." />
+                        <input onChange={(e) => this.handleChangePassword(e)} type="password" className="form-control" placeholder="Enter Your Password..." />
                     </div>
 
                     <div className="form-group">
                         {/* <label>Name</label> */}
-                        <input onChange={(e) => this.handleChangeName(e)} type="name" className="form-control" placeholder="Full Name..." />
+                        <input onChange={(e) => this.handleChangeName(e)} type="name" className="form-control" placeholder="Enter Your Full Name..." />
                     </div>
 
                     <button type="submit" className="btn btn-dark btn-sm btn-block">Sign Up</button>

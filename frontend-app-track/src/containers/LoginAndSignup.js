@@ -28,13 +28,11 @@ export default class LoginAndSignup extends React.Component {
         return (
             <div className="login-signup-container">
                 <div className="title-page"> 
-                <h3>Welcome to AppTrack</h3>
-                {/* <p>Please sign in or register below</p> */}
-                {/* {this.state.toggle === false ? <Login toggleForm={this.toggleForm} handleUserSession={this.props.handleUserSession} /> : <Signup toggleForm={this.toggleForm} handleUserSession={this.props.handleUserSession} /> } */}
+                    <h3>Welcome to AppTrack</h3>
                 </div>
 
                 <div> 
-                {this.state.toggle === false ? <Login toggleForm={this.toggleForm} handleUserSession={this.props.handleUserSession} /> : <Signup toggleForm={this.toggleForm} handleUserSession={this.props.handleUserSession} /> }
+                    {this.state.toggle === false ? <Login toggleForm={this.toggleForm} handleUserSession={this.props.handleUserSession} /> : <Signup toggleForm={this.toggleForm} handleUserSession={this.props.handleUserSession} /> }
                 </div>
 
 

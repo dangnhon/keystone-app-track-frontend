@@ -51,16 +51,19 @@ export default class EditJobViewTask extends React.Component {
             
             return matchJobs.tasks.map(task =>  
                 <div className="job-card">
-                <Card className="task-cards" text="black" onClick={(e) => this.openEditModal(e, task)} style={{ width: '100%' }}>
+                <Card className="task-cards" text="black"  style={{ width: '100%' }}>
                     <Card.Body>
                         <Card.Title>Task Prioity: {task.priority} </Card.Title>
                         <Card.Text>{task.task}</Card.Text>
                             <Card.Text>
                                 {task.completed === false ? "Not yet completed" : "Completed"}
                         </Card.Text>
+                        <Button onClick={(e) => this.handleDeleteTask(e, task)} className="btn btn-md btn-block" >delete</Button>
+                        <Button onClick={(e) => this.openEditModal(e, task)} className="btn btn-md btn-block" >Edit</Button>
                     </Card.Body>
+
                 </Card>
-                <Button onClick={(e) => this.handleDeleteTask(e, task)} variant="primary" className="btn-block" >delete</Button>
+                
                 </div> 
             )
         } else {
@@ -102,14 +105,9 @@ export default class EditJobViewTask extends React.Component {
             <Modal 
                 aria-labelledby="contained-modal-title-vcenter"
                 centered
-                // scrollable
                 size="lg"
                 show={this.props.openEdit} 
                 onHide={this.props.closeEditModal}>
-{/* 
-                <Modal.Header closeButton>
-                <Modal.Title id="contained-modal-title-vcenter">Edit Job</Modal.Title>
-                </Modal.Header> */}
                  <Modal.Body>
                 <Form.Group >
 

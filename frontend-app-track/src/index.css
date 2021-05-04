@@ -115,11 +115,16 @@ body, html, .App, #root, .outer {
 }
 
 .btn {
+  font-size: 12px !important;
   font-weight: bold !important;
   background-color: #74b0ea !important;
   border-color: none !important;
   border-radius: 15px !important;
   box-shadow: 3px 3px #c5c6c7;
+}
+
+.add-new {
+  max-width: 50%;
 }
 
 .sort {

@@ -51,9 +51,6 @@ export default class EditTask extends React.Component {
             show={this.props.openEdit} 
             onHide={this.props.closeEditModal}>
 
-            {/* <Modal.Header closeButton>
-            <Modal.Title id="contained-modal-title-vcenter">Edit Task</Modal.Title>
-            </Modal.Header> */}
             <Modal.Body>
                 <Form.Group >
 

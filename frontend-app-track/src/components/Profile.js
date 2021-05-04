@@ -63,8 +63,8 @@ export default class Profile extends React.Component {
                     <label>Name</label>
                     <input onChange={(e) => this.handleChangeName(e)} type="tag" className="form-control" defaultValue={this.props.userData.name} />
                 </div>
-                <Button type="submit" className="btn btn-md btn-block">Update Profile</Button><br></br>
-                <Button onClick={() => this.props.deleteUser()} className="btn btn-md btn-block">Delete Account?</Button><br></br>
+                <Button type="submit" className="add-new">Update Profile</Button><br></br>
+                <Button onClick={() => this.props.deleteUser()} className="add-new">Delete Account?</Button><br></br>
 
             </form>
             </div> 

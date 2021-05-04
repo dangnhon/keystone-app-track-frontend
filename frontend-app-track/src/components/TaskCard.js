@@ -3,7 +3,7 @@ import Button from 'react-bootstrap/button'
 import {Card} from 'react-bootstrap'
 
  const TaskCard = (props) => {
-        return (
+    return (
             <div className="job-card">
             <Card className="task-cards" text="black" style={{ width: '100%' }}>
                 <Card.Body>
@@ -16,7 +16,7 @@ import {Card} from 'react-bootstrap'
                 </Card.Body>
             </Card>
         </div> 
-        )
+    )
 }
 
 export default TaskCard

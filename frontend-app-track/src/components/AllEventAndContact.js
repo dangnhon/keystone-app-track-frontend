@@ -5,6 +5,7 @@ import Button from 'react-bootstrap/button'
 import Form from 'react-bootstrap/Form'
 import AddNewEvent from '../components/AddNewEvent.js'
 import EditMeetViewContact from '../components/EditMeetViewContact.js'
+import ContactCard from '../components/ContactCard.js'
 
 
 export default class AllEventAndContact extends React.Component {
@@ -37,17 +38,7 @@ export default class AllEventAndContact extends React.Component {
     SearchContact = () => {
         if (this.state.searchTerm !== "") {
             let searchedName = this.props.userData.meetup_contacts.filter(contact => contact.name.toLowerCase().includes(this.state.searchTerm.toLowerCase()))
-            return searchedName.map(contact => 
-                <div className="job-card">
-                <Card className="contact-cards" text="black" style={{ width: '100%' }}>
-                    <Card.Body>
-                           <Card.Title>{contact.name}</Card.Title>
-                           <Card.Text>{contact.email}</Card.Text>
-                           <Card.Text>{contact.phone_number}</Card.Text>
-                    </Card.Body>
-                </Card>
-                </div> 
-            ) 
+            return searchedName.map(contact => <ContactCard contact={contact} key={contact.id} />) 
         } else if (this.state.searchTerm === "") {
             this.setState({
                 beginSearch: false 
@@ -57,33 +48,23 @@ export default class AllEventAndContact extends React.Component {
 
     getAllMeet = () => {
         return this.props.userData.meetups.map(meet => 
-             <div className="job-card">
-             <Card text="black" className="meet-cards" onClick={(e) => this.openEditModal(e, meet)} style={{ width: '100%' }}>
-                 <Card.Body>
-                     <Card.Title>Meetup: {meet.name}</Card.Title>
-                         <Card.Text>
-                            Location: {meet.location}<br></br>
-                            Date: {meet.date}
-                     </Card.Text>
-                 </Card.Body>
-             </Card>
-             </div> 
-             )
-     }
+            <div className="job-card">
+                <Card text="black" className="meet-cards" onClick={(e) => this.openEditModal(e, meet)} style={{ width: '100%' }}>
+                    <Card.Body>
+                        <Card.Title>Meetup: {meet.name}</Card.Title>
+                            <Card.Text>
+                                Location: {meet.location}<br></br>
+                                Date: {meet.date}
+                        </Card.Text>
+                    </Card.Body>
+                </Card>
+            </div> 
+        )
+    }
  
-     getAllContact = () => {
-         return this.props.userData.meetup_contacts.map(contact => 
-             <div className="job-card">
-             <Card className="contact-cards" text="black" style={{ width: '100%' }}>
-                 <Card.Body>
-                        <Card.Title>{contact.name}</Card.Title>
-                        <Card.Text>{contact.email}</Card.Text>
-                        <Card.Text>{contact.phone_number}</Card.Text>
-                 </Card.Body>
-             </Card>
-             </div> 
-             )
-     }
+    getAllContact = () => {
+        return this.props.userData.meetup_contacts.map(contact => <ContactCard contact={contact} key={contact.id} />)
+    }
     
     render() {
         return(
@@ -114,16 +95,13 @@ export default class AllEventAndContact extends React.Component {
             </div>
 
             <div className="job-container-child right">
-
                 <Form.Group className="sort" >
                     <Form.Label>Search Contact: </Form.Label>
                     <Form.Control type="text" onChange={(e) => this.editSearchTerm(e)}  value={this.state.searchTerm} placeholder="Search by name..." />
                 </Form.Group>
 
-                {/* <div className="all-contact">All Contacts</div> */}
                 {this.state.beginSearch ? this.SearchContact() : this.getAllContact()}
             </div>
-
         </div>
         )
     }

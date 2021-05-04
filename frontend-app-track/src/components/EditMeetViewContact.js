@@ -47,21 +47,23 @@ export default class EditMeetViewContact extends React.Component {
             
             return matchMeets.meetup_contacts.map(contact =>  
                 <div className="job-card">
-                <Card className="contact-cards" text="black" onClick={(e) => this.openEditModal(e, contact)} style={{ width: '100%' }}>
-                    <Card.Body>
-                        {/* <Card.Title>Contacts:</Card.Title> */}
-                        <Card.Title>{contact.name}</Card.Title>
-                            <Card.Text>
-                                {contact.email}<br></br>
-                                {contact.phone_number}
-                        </Card.Text>
-                    </Card.Body>
-                </Card>
-                <Button onClick={(e) => this.handleDeleteContact(e, contact)} variant="primary" className="btn-block" >delete</Button>
+                    <Card className="contact-cards" text="black" style={{ width: '100%' }}>
+                        <Card.Body>
+                            <Card.Title>{contact.name}</Card.Title>
+                                <Card.Text>
+                                    {contact.email}<br></br>
+                                    {contact.phone_number}
+                                </Card.Text>
+                                <Modal.Footer>
+                                    <Button onClick={(e) => this.openEditModal(e, contact)} variant="primary">Edit</Button>
+                                    <Button onClick={(e) => this.handleDeleteContact(e, contact)} variant="primary">Delete</Button>
+                                </Modal.Footer>
+                        </Card.Body>
+                    </Card>
                 </div> 
             )
         } else {
-            return <p>please create a contact</p>
+            return <p>Please create some contacts</p>
         }
     }
 

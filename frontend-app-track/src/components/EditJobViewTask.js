@@ -53,21 +53,22 @@ export default class EditJobViewTask extends React.Component {
                 <div className="job-card">
                 <Card className="task-cards" text="black"  style={{ width: '100%' }}>
                     <Card.Body>
-                        <Card.Title>Task Prioity: {task.priority} </Card.Title>
-                        <Card.Text>{task.task}</Card.Text>
+                        <Card.Title>Task Prioity: {task.priority}</Card.Title>
                             <Card.Text>
+                                {task.task}<br></br>
                                 {task.completed === false ? "Not yet completed" : "Completed"}
-                        </Card.Text>
-                        <Button onClick={(e) => this.handleDeleteTask(e, task)} className="btn btn-md btn-block" >delete</Button>
-                        <Button onClick={(e) => this.openEditModal(e, task)} className="btn btn-md btn-block" >Edit</Button>
+                                </Card.Text>
+                            <Modal.Footer>
+                                <Button onClick={(e) => this.openEditModal(e, task)} variant="primary" >Edit</Button>
+                                <Button onClick={(e) => this.handleDeleteTask(e, task)} variant="primary" >Delete</Button>
+                            </Modal.Footer>
                     </Card.Body>
-
                 </Card>
                 
                 </div> 
             )
         } else {
-            return <p>please create a task</p>
+            return <p>Please create some tasks</p>
         }
     }
 

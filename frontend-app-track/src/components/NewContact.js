@@ -51,10 +51,6 @@ export default class NewContact extends React.Component {
             show={this.props.isOpen} 
             onHide={this.props.closeModal}>
 
-
-            {/* <Modal.Header closeButton>
-            <Modal.Title id="contained-modal-title-vcenter">Create a New Contact</Modal.Title>
-            </Modal.Header> */}
             <Modal.Body>
                 <Form.Group >
 

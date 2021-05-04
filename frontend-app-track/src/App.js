@@ -125,7 +125,6 @@ updateContactAgain = (createdContact) => {
 }
 
 updateOldContact = (updatedContact) => {
-  debugger
   let findMeetArray = this.state.allMeets.find( meet => meet.id === updatedContact.meetup.id)
   let deleteContactArray = findMeetArray.meetup_contacts.filter(contact => contact.id !== updatedContact.id)
   let finalUpdatedContactArray = [updatedContact, ...deleteContactArray]
@@ -360,6 +359,6 @@ handleUserSession = (user) => {
   }
 
   export default withRouter(App)
-  // ADD A GIF DEMO VIDEO TO PLAY ON THE LOGIN AND SIGN UP PAGE SO USERS CAN SEE WHAT THE APP IS LIKE
+  
 
 

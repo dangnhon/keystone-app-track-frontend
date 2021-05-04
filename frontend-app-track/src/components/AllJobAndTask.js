@@ -11,10 +11,10 @@ export default class AllJobAndTask extends React.Component {
     state = {
         isOpen: false,
         openEdit: false,
+        selectedTask: {},
         selectedJob: {},
         priority: "See All Task",
         beginSort: false
-        
     }   
 
     openModal = () => this.setState({ isOpen: true })
@@ -26,6 +26,23 @@ export default class AllJobAndTask extends React.Component {
     }
 
     closeEditModal = () => this.setState({ openEdit: false })
+
+    completeTask = (task) => {
+        // debugger 
+        let token = sessionStorage.getItem("token")
+        fetch(`http://localhost:3000/tasks/${task.id}`, {
+            method: "PATCH",
+            headers: {
+                Authorization: `bearer ${token}`,
+                "Content-Type": "application/json"
+            }, 
+            body: JSON.stringify({
+                completed: true
+            })
+        })
+        .then(reps => reps.json()) 
+        .then(updatedTask => this.props.updateOldTask(updatedTask))
+    } 
     
     getAllJob = () => {
        return this.props.userData.jobs.map(job => 
@@ -47,11 +64,12 @@ export default class AllJobAndTask extends React.Component {
             <div className="job-card">
                 <Card className="task-cards" text="black" style={{ width: '100%' }}>
                     <Card.Body>
-                        <Card.Title>Task Priority: {task.priority} </Card.Title>
+                        <Card.Title>{task.job.company_name} Task Priority: {task.priority} </Card.Title>
                         <Card.Text>{task.task}</Card.Text>
                             <Card.Text>
                                 {task.completed === false ? "Not yet completed" : "Completed"}
                         </Card.Text>
+                        {task.completed ? null : <Button onClick={() => this.completeTask(task)}>Complete Task</Button>}
                     </Card.Body>
                 </Card>
             </div> 
@@ -76,11 +94,12 @@ export default class AllJobAndTask extends React.Component {
             <div className="job-card">
                 <Card className="task-cards" text="black" style={{ width: '100%' }}>
                     <Card.Body>
-                        <Card.Title>Task Priority: {task.priority} </Card.Title>
+                        <Card.Title>{task.job.company_name} Task Priority: {task.priority} </Card.Title>
                         <Card.Text>{task.task}</Card.Text>
                             <Card.Text>
                                 {task.completed === false ? "Not yet completed" : "Completed"}
                         </Card.Text>
+                        {task.completed ? null : <Button onClick={() => this.completeTask(task)}>Complete Task</Button>}
                     </Card.Body>
                 </Card>
             </div> 
@@ -134,6 +153,7 @@ export default class AllJobAndTask extends React.Component {
                     </Form.Group>
                 
                     {this.state.beginSort ? this.sortAllTask() : this.getAllTask()}
+
                 </div>
             </div>
         )

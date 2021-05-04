@@ -5,6 +5,7 @@ import Button from 'react-bootstrap/button'
 import {Card} from 'react-bootstrap'
 import AddNewJob from '../components/AddNewJob.js'
 import EditJobViewTask from '../components/EditJobViewTask.js'
+import TaskCard from '../components/TaskCard.js'
 
 export default class AllJobAndTask extends React.Component {
 
@@ -28,7 +29,6 @@ export default class AllJobAndTask extends React.Component {
     closeEditModal = () => this.setState({ openEdit: false })
 
     completeTask = (task) => {
-        // debugger 
         let token = sessionStorage.getItem("token")
         fetch(`http://localhost:3000/tasks/${task.id}`, {
             method: "PATCH",
@@ -60,27 +60,7 @@ export default class AllJobAndTask extends React.Component {
     }
 
     getAllTask = () => {
-        return this.props.userData.tasks.map(task => 
-            <div className="job-card">
-                <Card className="task-cards" text="black" style={{ width: '100%' }}>
-                    <Card.Body>
-                        <Card.Title>{task.job.company_name} Task Priority: {task.priority} </Card.Title>
-                        <Card.Text>{task.task}</Card.Text>
-                            <Card.Text>
-                                {task.completed === false ? "Not yet completed" : "Completed"}
-                        </Card.Text>
-                        {task.completed ? null : <Button onClick={() => this.completeTask(task)}>Complete Task</Button>}
-                    </Card.Body>
-                </Card>
-            </div> 
-        )
-    }
-
-    handleChange =(e) => {
-        this.setState({
-            priority: e.target.value,
-            beginSort: true
-        })
+       return this.props.userData.tasks.map(task => <TaskCard task={task} completeTask={this.completeTask} key={task.id} />)
     }
 
     sortAllTask = () => {
@@ -88,25 +68,21 @@ export default class AllJobAndTask extends React.Component {
             this.setState({
                 beginSort: false
             })
+        } else if (this.state.priority === "false" || this.state.priority === "true") {
+            let specificTasks = this.props.userData.tasks.filter(task => task.completed.toString() === this.state.priority)
+            return specificTasks.map(task => <TaskCard task={task} completeTask={this.completeTask} key={task.id} />)
         } else {
             let sortedTask = this.props.userData.tasks.filter(task => task.priority === parseInt(this.state.priority)) 
-        return sortedTask.map(task => 
-            <div className="job-card">
-                <Card className="task-cards" text="black" style={{ width: '100%' }}>
-                    <Card.Body>
-                        <Card.Title>{task.job.company_name} Task Priority: {task.priority} </Card.Title>
-                        <Card.Text>{task.task}</Card.Text>
-                            <Card.Text>
-                                {task.completed === false ? "Not yet completed" : "Completed"}
-                        </Card.Text>
-                        {task.completed ? null : <Button onClick={() => this.completeTask(task)}>Complete Task</Button>}
-                    </Card.Body>
-                </Card>
-            </div> 
-        )
-        } 
+            return sortedTask.map(task => <TaskCard task={task} completeTask={this.completeTask} key={task.id} />)
+        }
     }
-    
+
+    handleChangeSort =(e) => {
+        this.setState({
+            priority: e.target.value,
+            beginSort: true
+        })
+    }
 
     render() {         
 
@@ -141,15 +117,16 @@ export default class AllJobAndTask extends React.Component {
                     
                     <Form.Group className="sort" >
                         <Form.Label>Sort Task: </Form.Label>
-                        <Form.Control as="select" name="priority" onChange={this.handleChange} defaultValue="All Task" >
+                        <Form.Control as="select" name="priority" onChange={this.handleChangeSort} defaultValue="All Task" >
                         <option value="All Task">See All Task</option>
-                        <option value={1}>1</option>
-                        <option value={2}>2</option>
-                        <option value={3}>3</option>
-                        <option value={4}>4</option>
-                        <option value={5}>5</option>
+                        <option value={false}>Pending Tasks</option>
+                        <option value={true}>All Completed</option>
+                        <option value={1}>Task Priority: 1</option>
+                        <option value={2}>Task Priority: 2</option>
+                        <option value={3}>Task Priority: 3</option>
+                        <option value={4}>Task Priority: 4</option>
+                        <option value={5}>Task Priority: 5</option>
                         </Form.Control>
-                        {/* <button className="add-new" onClick={this.sortAllTask} >Sort</button> */}
                     </Form.Group>
                 
                     {this.state.beginSort ? this.sortAllTask() : this.getAllTask()}

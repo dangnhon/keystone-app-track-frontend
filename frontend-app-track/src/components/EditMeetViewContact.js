@@ -103,10 +103,7 @@ export default class EditMeetViewContact extends React.Component {
             size="lg"
             show={this.props.openEdit} 
             onHide={this.props.closeEditModal}>
-                
-            {/* <Modal.Header closeButton>
-            <Modal.Title id="contained-modal-title-vcenter">Edit Meetup</Modal.Title>
-            </Modal.Header> */}
+
             <Modal.Body>
                 <Form.Group >
 

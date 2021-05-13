@@ -226,7 +226,6 @@ handleDeleteJob = (job) => {
       }
   })
   .then(resp => resp.json())
-  //.then(message => alert("You've deleted a job app!"))
 
   this.setState({
     userData: {

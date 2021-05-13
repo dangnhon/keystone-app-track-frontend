@@ -12,7 +12,7 @@ import {Card} from 'react-bootstrap'
                         <Card.Text>
                             {props.task.completed === false ? "Not yet completed" : "Completed"}
                     </Card.Text>
-                    {props.task.completed ? null : <Button onClick={() => props.completeTask(props.task)}>Complete Task</Button>}
+                    {props.task.completed ? <Button onClick={() => props.handleDeleteSpecificTask(props.task, props.task.job)}>Delete Task</Button> : <Button onClick={() => props.completeTask(props.task)}>Complete Task</Button>}
                 </Card.Body>
             </Card>
         </div> 

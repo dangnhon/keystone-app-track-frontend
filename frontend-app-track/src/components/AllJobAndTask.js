@@ -60,7 +60,7 @@ export default class AllJobAndTask extends React.Component {
     }
 
     getAllTask = () => {
-       return this.props.userData.tasks.map(task => <TaskCard task={task} completeTask={this.completeTask} key={task.id} />)
+       return this.props.userData.tasks.map(task => <TaskCard task={task} completeTask={this.completeTask} handleDeleteSpecificTask={this.props.handleDeleteSpecificTask} key={task.id} />)
     }
 
     sortAllTask = () => {

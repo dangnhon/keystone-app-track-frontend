@@ -74,7 +74,6 @@ export default class AllJobAndTask extends React.Component {
     }
 
     render() {         
-
         return(
             <div className="job-dynamic-container">
                 <div className="job-container-child left">

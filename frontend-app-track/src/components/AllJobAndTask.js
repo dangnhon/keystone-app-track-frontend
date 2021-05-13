@@ -2,10 +2,10 @@ import React from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/button'
-import {Card} from 'react-bootstrap'
 import AddNewJob from '../components/AddNewJob.js'
 import EditJobViewTask from '../components/EditJobViewTask.js'
 import TaskCard from '../components/TaskCard.js'
+import JobCard from '../components/JobCard.js'
 
 export default class AllJobAndTask extends React.Component {
 
@@ -43,21 +43,10 @@ export default class AllJobAndTask extends React.Component {
         .then(reps => reps.json()) 
         .then(updatedTask => this.props.updateOldTask(updatedTask))
     } 
-    
+
     getAllJob = () => {
-       return this.props.userData.jobs.map(job => 
-            <div className="job-card">
-                <Card text="black" className="job-cards" onClick={(e) => this.openEditModal(e, job)} style={{ width: '100%' }}>
-                    <Card.Body >
-                        <Card.Title>Applied To: {job.company_name}</Card.Title>
-                            <Card.Text>
-                                {job.status === false ? "Status: In Review" : "Status: Accepted"}
-                        </Card.Text>
-                    </Card.Body>
-                </Card>
-            </div> 
-        )
-    }
+        return this.props.userData.jobs.map(job => <JobCard job={job} key={job.id} openEditModal={this.openEditModal} />)
+     }
 
     getAllTask = () => {
        return this.props.userData.tasks.map(task => <TaskCard task={task} completeTask={this.completeTask} handleDeleteSpecificTask={this.props.handleDeleteSpecificTask} key={task.id} />)

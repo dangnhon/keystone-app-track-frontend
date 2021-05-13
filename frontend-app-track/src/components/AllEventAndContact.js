@@ -1,11 +1,11 @@
 import React from 'react' 
 import 'bootstrap/dist/css/bootstrap.min.css'
-import {Card} from 'react-bootstrap'
 import Button from 'react-bootstrap/button'
 import Form from 'react-bootstrap/Form'
 import AddNewEvent from '../components/AddNewEvent.js'
 import EditMeetViewContact from '../components/EditMeetViewContact.js'
 import ContactCard from '../components/ContactCard.js'
+import EventCard from '../components/EventCard.js'
 
 
 export default class AllEventAndContact extends React.Component {
@@ -47,19 +47,7 @@ export default class AllEventAndContact extends React.Component {
     }
 
     getAllMeet = () => {
-        return this.props.userData.meetups.map(meet => 
-            <div className="job-card">
-                <Card text="black" className="meet-cards" onClick={(e) => this.openEditModal(e, meet)} style={{ width: '100%' }}>
-                    <Card.Body>
-                        <Card.Title>Meetup: {meet.name}</Card.Title>
-                            <Card.Text>
-                                Location: {meet.location}<br></br>
-                                Date: {meet.date}
-                        </Card.Text>
-                    </Card.Body>
-                </Card>
-            </div> 
-        )
+        return this.props.userData.meetups.map(meet => <EventCard meet={meet} key={meet.id} openEditModal={this.openEditModal} />)
     }
  
     getAllContact = () => {

@@ -1,3 +1,4 @@
+import React from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import Modal from 'react-bootstrap/Modal'
 import Form from 'react-bootstrap/Form'
@@ -5,7 +6,8 @@ import Button from 'react-bootstrap/button'
 import {Card} from 'react-bootstrap'
 import NewContact from '../components/NewContact.js'
 import EditContact from '../components/EditContact.js'
-import React from 'react'
+import DeleteCheck from '../components/DeleteCheck.js'
+
 
 export default class EditMeetViewContact extends React.Component {
 
@@ -18,6 +20,7 @@ export default class EditMeetViewContact extends React.Component {
         },
         isOpen: false,
         openEdit: false,
+        deleteMeet: false, 
         selectedContact: {} 
     }
 
@@ -31,6 +34,10 @@ export default class EditMeetViewContact extends React.Component {
     }
 
     closeEditModal = () => this.setState({ openEdit: false })
+
+    openDelete = () => this.setState({ deleteMeet: true })
+
+    closeDelete = () => this.setState({ deleteMeet: false })
 
     handleChange = (e) => {
         this.setState({
@@ -120,7 +127,7 @@ export default class EditMeetViewContact extends React.Component {
             </Modal.Body>
             <Modal.Footer >
                 <Button variant="primary" onClick={(e) => this.handleSubmitEditMeet(e)} type="submit" >Submit Edit</Button>
-                <Button variant="primary" onClick={() => this.handleDeleteMeet()} >Delete Meetup</Button>
+                <Button variant="primary" onClick={() => this.openDelete()} >Delete Meetup</Button>
                 <Button variant="primary" onClick={this.openModal} >New Contact</Button>
             </Modal.Footer>
                 <div className="contact-container-child right" >
@@ -137,6 +144,11 @@ export default class EditMeetViewContact extends React.Component {
                     updateOldContact={this.props.updateOldContact}
                     selectedMeet={this.props.selectedMeet}
                     selectedContact={this.state.selectedContact} /> : null }
+
+                { this.state.deleteMeet ? <DeleteCheck 
+                    openDelete={this.openDelete}
+                    closeDelete={this.closeDelete} 
+                    handleDeleteApp={this.handleDeleteMeet} /> : null }
 
                 </div>
                 

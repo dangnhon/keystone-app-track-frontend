@@ -168,7 +168,6 @@ updateOldTaskAgain = (updatedTask) => {
   })
 }
 
-
 updateOldJob = (updatedJob) => {
   let allOtherJob = this.state.userData.jobs.filter(job => job.id !== updatedJob.id)
   let updatedJobArray = [updatedJob, ...allOtherJob]
@@ -202,14 +201,13 @@ handleDeleteMeet = (meet) => {
       }
   })
   .then(resp => resp.json())
-  //.then(message => alert("You've deleted a Meetup!"))
 
   this.setState({
     userData: {
       ...this.state.userData, 
       meetups: updatedMeetArray,
       meetup_contacts: updatedMeetContactArray
-  }
+    }
   })
 }
 
@@ -232,7 +230,7 @@ handleDeleteJob = (job) => {
       ...this.state.userData, 
       jobs: updatedJobArray,
       tasks: updatedTaskArray
-  }
+    }
   })
 }
 
@@ -256,7 +254,7 @@ handleDeleteSpecificTask = (selectedTask, selectedJob) => {
     userData: {
       ...this.state.userData,
       tasks: updatedTaskArray
-  },
+    },
     allJobs: allJobTask
   })
 }
@@ -281,7 +279,7 @@ handleDeleteSpecificContact = (selectedContact, selectedMeet) => {
     userData: {
       ...this.state.userData,
       meetup_contacts: updatedContactArray
-  },
+    },
     allMeets: allMeetContact
   })
 }
@@ -328,7 +326,6 @@ handleUserSession = (user) => {
   this.setState({
     userData: user.user,
   })
-
 }
 
   render() {

@@ -32,6 +32,7 @@ export default class DynamicPane extends React.Component {
                     handleDeleteSpecificContact={this.props.handleDeleteSpecificContact}
                     handleDeleteMeet={this.props.handleDeleteMeet} />
                 </div> 
+                
             </div>
         )
     }

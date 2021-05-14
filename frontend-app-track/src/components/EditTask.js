@@ -49,9 +49,8 @@ export default class EditTask extends React.Component {
             size="md"
             className="new-task"
             show={this.props.openEdit} 
-            onHide={this.props.closeEditModal}
-            >
-
+            onHide={this.props.closeEditModal} >
+                
             <Modal.Body>
                 <Form.Group >
 

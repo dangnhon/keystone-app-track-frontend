@@ -7,7 +7,6 @@ import EditMeetViewContact from '../components/EditMeetViewContact.js'
 import ContactCard from '../components/ContactCard.js'
 import EventCard from '../components/EventCard.js'
 
-
 export default class AllEventAndContact extends React.Component {
 
     state = {
@@ -79,7 +78,6 @@ export default class AllEventAndContact extends React.Component {
                 allMeets={this.props.allMeets}
                 selectedMeet={this.state.selectedMeet} 
                 handleDeleteMeet={this.props.handleDeleteMeet} /> : null }
-
             </div>
 
             <div className="job-container-child right">
@@ -87,7 +85,6 @@ export default class AllEventAndContact extends React.Component {
                     <Form.Label>Search Contact: </Form.Label>
                     <Form.Control type="text" onChange={(e) => this.editSearchTerm(e)}  value={this.state.searchTerm} placeholder="Search by name..." />
                 </Form.Group>
-
                 {this.state.beginSearch ? this.SearchContact() : this.getAllContact()}
             </div>
         </div>

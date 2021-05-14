@@ -1,3 +1,4 @@
+import React from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import Modal from 'react-bootstrap/Modal'
 import Form from 'react-bootstrap/Form'
@@ -5,7 +6,8 @@ import Button from 'react-bootstrap/button'
 import { Card } from 'react-bootstrap'
 import NewTask from '../components/NewTask.js'
 import  EditTask from '../components/EditTask.js'
-import React from 'react'
+import DeleteCheck from '../components/DeleteCheck.js'
+
 
 export default class EditJobViewTask extends React.Component {
 
@@ -22,6 +24,7 @@ export default class EditJobViewTask extends React.Component {
         },
         isOpen: false,
         openEdit: false,
+        deleteAppCheck: false,
         selectedTask: {}
     }
 
@@ -35,6 +38,10 @@ export default class EditJobViewTask extends React.Component {
     }
 
     closeEditModal = () => this.setState({ openEdit: false })
+
+    openDelete = () => this.setState({ deleteAppCheck: true })
+
+    closeDelete = () => this.setState({ deleteAppCheck: false })
 
     handleChange = (e) => {
         this.setState({
@@ -57,14 +64,13 @@ export default class EditJobViewTask extends React.Component {
                             <Card.Text>
                                 {task.task}<br></br>
                                 {task.completed === false ? "Not yet completed" : "Completed"}
-                                </Card.Text>
+                            </Card.Text>
                             <Modal.Footer>
                                 <Button onClick={(e) => this.openEditModal(e, task)} variant="primary" >Edit</Button>
                                 <Button onClick={(e) => this.handleDeleteTask(e, task)} variant="primary" >Delete</Button>
                             </Modal.Footer>
                     </Card.Body>
                 </Card>
-                
                 </div> 
             )
         } else {
@@ -99,7 +105,6 @@ export default class EditJobViewTask extends React.Component {
         let selectedJob = this.props.selectedJob
         this.props.handleDeleteSpecificTask(task, selectedJob)
     }
-
  
     render() {
         return( 
@@ -140,7 +145,7 @@ export default class EditJobViewTask extends React.Component {
                 </Modal.Body>
                 <Modal.Footer>
                 <Button variant="primary" onClick={(e) => this.handleSubmitEditJob(e)} type="submit" >Submit Edit</Button>
-                <Button variant="primary" onClick={() => this.handleDeleteApp()} >Delete App</Button>
+                <Button variant="primary" onClick={() => this.openDelete()} >Delete App</Button>
                 <Button variant="primary" onClick={this.openModal} >New Task</Button>
                 </Modal.Footer>
                 
@@ -160,6 +165,11 @@ export default class EditJobViewTask extends React.Component {
                      updateNewTask={this.props.updateNewTask}
                      updateOldTask={this.props.updateOldTask}
                      selectedTask={this.state.selectedTask} /> : null }
+
+                { this.state.deleteAppCheck ? <DeleteCheck 
+                    openDelete={this.openDelete}
+                    closeDelete={this.closeDelete} 
+                    handleDeleteApp={this.handleDeleteApp} /> : null }
 
                 </div>
 

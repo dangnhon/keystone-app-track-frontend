@@ -1,6 +1,6 @@
 import React from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css'
-import Modal from 'react-bootstrap/Modal'
+// import Modal from 'react-bootstrap/Modal'
 import Button from 'react-bootstrap/button'
 
 const Logout = (props) => {

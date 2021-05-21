@@ -51,10 +51,6 @@ export default class NewTask extends React.Component {
             show={this.props.isOpen} 
             onHide={this.props.closeModal}>
 
-
-            {/* <Modal.Header closeButton>
-            <Modal.Title id="contained-modal-title-vcenter">Create a New Task</Modal.Title>
-            </Modal.Header> */}
             <Modal.Body>
                 <Form.Group >
 

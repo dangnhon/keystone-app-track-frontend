@@ -91,14 +91,6 @@ updateNewJob = (createdJob) => {
 }
 
 updateNewTask = (createdTask) => {
-  let allJobTask = this.state.allJobs.map(job => job.id === createdTask.job.id ? {...job, tasks: [createdTask, ...job.tasks]} : job )
-  this.setState({ 
-    allJobs: allJobTask
-  })
-  this.updateTaskAgain(createdTask) 
-}
-
-updateTaskAgain = (createdTask) => {
   this.setState({
     userData: {
       ...this.state.userData, 
@@ -108,18 +100,19 @@ updateTaskAgain = (createdTask) => {
 }
 
 updateNewContact = (createdContact) => {
-  let allMeetContact = this.state.allMeets.map(meet => meet.id === createdContact.meetup.id ? {...meet, meetup_contacts: [createdContact, ...meet.meetup_contacts]} : meet )
-  this.setState({ 
-    allMeets: allMeetContact
-  })
-  this.updateContactAgain(createdContact)
-}
-
-updateContactAgain = (createdContact) => {
   this.setState({
     userData: {
       ...this.state.userData, 
         meetup_contacts: [createdContact, ...this.state.userData.meetup_contacts]
+    }
+  })
+}
+
+updateNewEvent = (createdEvent) => {
+  this.setState({ 
+    userData: {
+        ...this.state.userData, 
+        meetups: [createdEvent, ...this.state.userData.meetups]
     }
   })
 }
@@ -175,15 +168,6 @@ updateOldJob = (updatedJob) => {
     userData: {
       ...this.state.userData, 
       jobs: updatedJobArray
-    }
-  })
-}
-
-updateNewEvent = (createdEvent) => {
-  this.setState({ 
-    userData: {
-        ...this.state.userData, 
-        meetups: [createdEvent, ...this.state.userData.meetups]
     }
   })
 }

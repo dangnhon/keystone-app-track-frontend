@@ -53,10 +53,9 @@ export default class EditJobViewTask extends React.Component {
     }
 
     getAllJobTask = () => {
-        let matchJobs = this.props.allJobs.find(job => job.id === this.props.selectedJob.id)
-        if (matchJobs.tasks.length !== 0) {
-            
-            return matchJobs.tasks.map(task =>  
+        let matchTask = this.props.userData.tasks.filter(task => task.job.id === this.props.selectedJob.id)
+        if (matchTask.length !== 0) {
+            return matchTask.map(task =>  
                 <div className="job-card">
                 <Card className="task-cards" text="black"  style={{ width: '100%' }}>
                     <Card.Body>

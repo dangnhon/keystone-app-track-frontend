@@ -49,10 +49,10 @@ export default class EditMeetViewContact extends React.Component {
     }
 
     getAllMeetContacts = () => {
-        let matchMeets = this.props.allMeets.find(meet => meet.id === this.props.selectedMeet.id)
-        if (matchMeets.meetup_contacts.length !== 0) {
+        let matchContacts = this.props.userData.meetup_contacts.filter(contact => contact.meetup.id === this.props.selectedMeet.id)
+        if (matchContacts.length !== 0) {
             
-            return matchMeets.meetup_contacts.map(contact =>  
+            return matchContacts.map(contact =>  
                 <div className="job-card">
                     <Card className="contact-cards" text="black" style={{ width: '100%' }}>
                         <Card.Body>

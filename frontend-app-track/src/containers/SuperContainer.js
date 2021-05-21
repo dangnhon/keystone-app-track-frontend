@@ -13,6 +13,14 @@ import Analytic from '../components/Analytic.js'
 
 export default class SuperContainer extends React.Component {
 
+  // state = {
+  //   openLogout: false,
+  // }
+
+  // openModal = () => this.setState({ openLogout: true })
+  
+  // closeModal = () => this.setState({ openLogout: false })
+
     render(){
         return (
             <div className="App">
@@ -75,8 +83,14 @@ export default class SuperContainer extends React.Component {
                     <Route exact path="/about" component={About} />
 
                     <Route exact path="/logout" render={() => {
-                    return <Logout logout={this.props.logout} /> 
-                     }} />
+                    
+                    return <Logout logout={this.props.logout}/>
+                    }} />
+{/* 
+                    <Route exact path="/logout" render={() => {
+                    
+                    return <Logout logout={this.props.logout} closeModal={this.closeModal} isOpen={this.state.openLogout}/>
+                    }} /> */}
 
                      <Route exact path='/' render={() => {
                     return <DynamicPane 

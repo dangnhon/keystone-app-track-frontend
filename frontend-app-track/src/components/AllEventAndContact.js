@@ -17,8 +17,9 @@ export default class AllEventAndContact extends React.Component {
         beginSearch: false
     }  
 
-    openModal = () => this.setState({ isEventOpen: true });
-    closeModal = () => this.setState({ isEventOpen: false });
+    openModal = () => this.setState({ isEventOpen: true })
+    
+    closeModal = () => this.setState({ isEventOpen: false })
 
     openEditModal = (e, meet) => {
         this.setState({ openEdit: true })

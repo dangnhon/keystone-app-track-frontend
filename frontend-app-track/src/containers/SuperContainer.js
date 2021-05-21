@@ -76,14 +76,18 @@ export default class SuperContainer extends React.Component {
                     return <Profile deleteUser={this.props.deleteUser} userData={this.props.userData} /> 
                      }} />
 
-                    <Route exact path="/analytics" component={Analytic} />
+                    <Route exact path="/analytics" render={() => {
+                      return <Analytic 
+                      userData={this.props.userData}
+                      allJobs={this.props.allJobs}
+                      allMeets={this.props.allMeets}/>
+                    }} />
 
                     <Route exact path="/appointment" component={Appointment} />
 
                     <Route exact path="/about" component={About} />
 
                     <Route exact path="/logout" render={() => {
-                    
                     return <Logout logout={this.props.logout}/>
                     }} />
 {/* 

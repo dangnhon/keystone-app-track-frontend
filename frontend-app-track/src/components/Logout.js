@@ -7,7 +7,7 @@ const Logout = (props) => {
     return(
         <div className="logout-container">
             <h2>Logout?</h2>
-            <button onClick={() => props.logout()} className="btn btn-secondary btn-md">Logout</button>
+            <Button onClick={() => props.logout()} className="btn btn-secondary btn-md">Logout</Button>
         </div>
         // <Modal 
         //     aria-labelledby="contained-modal-title-vcenter"

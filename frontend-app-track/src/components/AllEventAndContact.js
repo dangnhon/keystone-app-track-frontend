@@ -76,7 +76,6 @@ export default class AllEventAndContact extends React.Component {
                 updateNewContact={this.props.updateNewContact}
                 handleDeleteSpecificContact={this.props.handleDeleteSpecificContact}
                 userData={this.props.userData} 
-                allMeets={this.props.allMeets}
                 selectedMeet={this.state.selectedMeet} 
                 handleDeleteMeet={this.props.handleDeleteMeet} /> : null }
             </div>

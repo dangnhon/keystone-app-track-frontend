@@ -101,8 +101,7 @@ export default class EditJobViewTask extends React.Component {
     }
 
     handleDeleteTask = (e, task) => {
-        let selectedJob = this.props.selectedJob
-        this.props.handleDeleteSpecificTask(task, selectedJob)
+        this.props.handleDeleteSpecificTask(task)
     }
  
     render() {

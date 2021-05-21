@@ -60,8 +60,6 @@ export default class SuperContainer extends React.Component {
                     updateNewTask={this.props.updateNewTask}
                     updateNewContact={this.props.updateNewContact} 
                     userData={this.props.userData} 
-                    allJobs={this.props.allJobs}
-                    allMeets={this.props.allMeets}
                     updateOldJob={this.props.updateOldJob} 
                     updateOldMeet={this.props.updateOldMeet} 
                     updateOldContact={this.props.updateOldContact} 
@@ -103,8 +101,6 @@ export default class SuperContainer extends React.Component {
                     updateNewTask={this.props.updateNewTask}
                     updateNewContact={this.props.updateNewContact} 
                     userData={this.props.userData}
-                    allJobs={this.props.allJobs}
-                    allMeets={this.props.allMeets}
                     updateOldJob={this.props.updateOldJob}
                     updateOldMeet={this.props.updateOldMeet}
                     updateOldContact={this.props.updateOldContact}

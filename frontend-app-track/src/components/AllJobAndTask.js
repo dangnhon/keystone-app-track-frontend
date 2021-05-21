@@ -93,8 +93,7 @@ export default class AllJobAndTask extends React.Component {
                         openEdit={this.state.openEdit} 
                         updateOldJob={this.props.updateOldJob} 
                         updateOldTask={this.props.updateOldTask}
-                        userData={this.props.userData} 
-                        allJobs={this.props.allJobs} 
+                        userData={this.props.userData}  
                         selectedJob={this.state.selectedJob} 
                         handleDeleteSpecificTask={this.props.handleDeleteSpecificTask}
                         handleDeleteJob={this.props.handleDeleteJob} /> : null }

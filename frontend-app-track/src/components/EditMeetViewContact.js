@@ -98,8 +98,7 @@ export default class EditMeetViewContact extends React.Component {
     }
 
     handleDeleteContact = (e, contact) => {
-        let selectedMeet = this.props.selectedMeet
-        this.props.handleDeleteSpecificContact(contact, selectedMeet)
+        this.props.handleDeleteSpecificContact(contact)
     }
 
     render() {

@@ -14,7 +14,6 @@ export default class DynamicPane extends React.Component {
                     updateNewJob={this.props.updateNewJob} 
                     updateNewTask={this.props.updateNewTask} 
                     userData={this.props.userData} 
-                    allJobs={this.props.allJobs}
                     updateOldJob={this.props.updateOldJob} 
                     updateOldTask={this.props.updateOldTask}
                     handleDeleteSpecificTask={this.props.handleDeleteSpecificTask}
@@ -26,7 +25,6 @@ export default class DynamicPane extends React.Component {
                     updateNewEvent={this.props.updateNewEvent} 
                     updateNewContact={this.props.updateNewContact}
                     userData={this.props.userData} 
-                    allMeets={this.props.allMeets}
                     updateOldMeet={this.props.updateOldMeet} 
                     updateOldContact={this.props.updateOldContact}
                     handleDeleteSpecificContact={this.props.handleDeleteSpecificContact}

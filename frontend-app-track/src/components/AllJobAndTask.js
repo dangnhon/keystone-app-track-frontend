@@ -77,7 +77,7 @@ export default class AllJobAndTask extends React.Component {
         return(
             <div className="job-dynamic-container">
                 <div className="job-container-child left">
-                    <Button onClick={this.openModal} className="add-new">Add New Job Application</Button>
+                    <Button onClick={this.openModal} className="add-new">New App</Button>
 
                     { this.state.isOpen ? <AddNewJob 
                         closeModal={this.closeModal} 

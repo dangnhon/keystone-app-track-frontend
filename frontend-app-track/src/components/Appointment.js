@@ -97,7 +97,6 @@ function Appointment() {
                     <DateTimePicker onChange={changeEnd} name="end" value={valueE} />
                 </div>            
                                
-                               
             </Form.Group>
                 <Button onClick={handleSubmit} className="btn btn-md btn-block" type="submit" >Submit</Button>
         </div>   

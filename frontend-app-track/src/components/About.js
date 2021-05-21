@@ -13,7 +13,7 @@ const About = () => {
                     Able to create, read, update, and delete your account, job applications, tasks, meetups, and contacts.
                 </li>
                 <li>
-                    Sort all of your tasks in priority of 1-5.
+                    Sort all of your tasks by priority, complete, and incomplete.
                 </li>
                 <li>
                     Search through all of your contacts by name.

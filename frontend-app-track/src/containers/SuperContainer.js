@@ -6,12 +6,12 @@ import Profile from '../components/Profile.js'
 import Appointment from '../components/Appointment.js'
 import About from '../components/About.js'
 import Logout from '../components/Logout.js'
+import Analytic from '../components/Analytic.js'
 
 
 
 
 export default class SuperContainer extends React.Component {
-
 
     render(){
         return (
@@ -23,6 +23,9 @@ export default class SuperContainer extends React.Component {
                     <ul className="navbar-nav ml-auto">
                     <li className="nav-item">
                         <Link className="nav-link" to={"/profile"}>Profile</Link>
+                      </li>
+                      <li className="nav-item">
+                        <Link className="nav-link" to={"/analytics"}>Analytics</Link>
                       </li>
                       <li className="nav-item">
                         <Link className="nav-link" to={"/appointment"}>Appointment</Link>
@@ -64,6 +67,8 @@ export default class SuperContainer extends React.Component {
                     <Route exact path="/profile" render={() => {
                     return <Profile deleteUser={this.props.deleteUser} userData={this.props.userData} /> 
                      }} />
+
+                    <Route exact path="/analytics" component={Analytic} />
 
                     <Route exact path="/appointment" component={Appointment} />
 

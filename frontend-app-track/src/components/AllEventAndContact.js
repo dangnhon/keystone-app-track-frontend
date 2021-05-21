@@ -57,7 +57,7 @@ export default class AllEventAndContact extends React.Component {
         return(
             <div className="job-dynamic-container">
             <div className="job-container-child left">
-            <Button onClick={this.openModal} className="add-new">Add New Meetup</Button>
+            <Button onClick={this.openModal} className="add-new">New Meetup</Button>
 
             { this.state.isEventOpen ? <AddNewEvent 
                 closeModal={this.closeModal} 

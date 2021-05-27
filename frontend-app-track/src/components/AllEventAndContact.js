@@ -14,7 +14,9 @@ export default class AllEventAndContact extends React.Component {
         openEdit: false,
         selectedMeet: {},
         searchTerm: "",
-        beginSearch: false
+        beginSearch: false,
+        searchEventTerm: "",
+        beginEventSearch: false,
     }  
 
     openModal = () => this.setState({ isEventOpen: true })
@@ -35,6 +37,13 @@ export default class AllEventAndContact extends React.Component {
         })
     }
 
+    editEventSearchTerm = (e) => {
+        this.setState({
+            searchEventTerm: e.target.value,
+            beginEventSearch: true
+        })
+    }
+
     SearchContact = () => {
         if (this.state.searchTerm !== "") {
             let searchedName = this.props.userData.meetup_contacts.filter(contact => contact.name.toLowerCase().includes(this.state.searchTerm.toLowerCase()))
@@ -42,6 +51,17 @@ export default class AllEventAndContact extends React.Component {
         } else if (this.state.searchTerm === "") {
             this.setState({
                 beginSearch: false 
+            })
+        }
+    }
+
+    SearchEvent = () => {
+        if (this.state.searchEventTerm !== "") {
+            let searchedName = this.props.userData.meetups.filter(meet => meet.name.toLowerCase().includes(this.state.searchEventTerm.toLowerCase()))
+            return searchedName.map(meet => <EventCard meet={meet} key={meet.id} openEditModal={this.openEditModal} />) 
+        } else if (this.state.searchTerm === "") {
+            this.setState({
+                beginEventSearch: false 
             })
         }
     }
@@ -60,13 +80,18 @@ export default class AllEventAndContact extends React.Component {
             <div className="job-container-child left">
             <Button onClick={this.openModal} className="add-new">New Meetup</Button>
 
+            <Form.Group className="sort" >
+                <Form.Label>Search Events: </Form.Label>
+                <Form.Control type="text" onChange={(e) => this.editEventSearchTerm(e)}  value={this.state.searchEventTerm} placeholder="Search by name..." />
+            </Form.Group>
+
             { this.state.isEventOpen ? <AddNewEvent 
                 closeModal={this.closeModal} 
                 isEventOpen={this.state.isEventOpen} 
                 updateNewEvent={this.props.updateNewEvent} 
                 userData={this.props.userData} /> : null }   
 
-            {this.getAllMeet()}
+            {this.state.beginEventSearch ? this.SearchEvent() : this.getAllMeet()}
 
             { this.state.openEdit ? <EditMeetViewContact 
                 closeEditModal={this.closeEditModal} 

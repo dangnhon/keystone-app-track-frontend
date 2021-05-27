@@ -15,7 +15,9 @@ export default class AllJobAndTask extends React.Component {
         selectedTask: {},
         selectedJob: {},
         priority: "See All Task",
-        beginSort: false
+        beginSort: false,
+        searchTerm: "",
+        beginSearch: false,
     }   
 
     openModal = () => this.setState({ isOpen: true })
@@ -43,6 +45,24 @@ export default class AllJobAndTask extends React.Component {
         .then(reps => reps.json()) 
         .then(updatedTask => this.props.updateOldTask(updatedTask))
     } 
+
+    editSearchTerm = (e) => {
+        this.setState({
+            searchTerm: e.target.value,
+            beginSearch: true
+        })
+    }
+
+    SearchJob = () => {
+        if (this.state.searchTerm !== "") {
+            let searchedName = this.props.userData.jobs.filter(job => job.company_name.toLowerCase().includes(this.state.searchTerm.toLowerCase()))
+            return searchedName.map(job => <JobCard job={job} key={job.id} openEditModal={this.openEditModal} />) 
+        } else if (this.state.searchTerm === "") {
+            this.setState({
+                beginSearch: false 
+            })
+        }
+    }
 
     getAllJob = () => {
         return this.props.userData.jobs.map(job => <JobCard job={job} key={job.id} openEditModal={this.openEditModal} />)
@@ -79,13 +99,18 @@ export default class AllJobAndTask extends React.Component {
                 <div className="job-container-child left">
                     <Button onClick={this.openModal} className="add-new">New App</Button>
 
+                    <Form.Group className="sort" >
+                    <Form.Label>Search Contact: </Form.Label>
+                    <Form.Control type="text" onChange={(e) => this.editSearchTerm(e)}  value={this.state.searchTerm} placeholder="Search by name..." />
+                    </Form.Group>
+
                     { this.state.isOpen ? <AddNewJob 
                         closeModal={this.closeModal} 
                         isOpen={this.state.isOpen} 
                         updateNewJob={this.props.updateNewJob} 
                         userData={this.props.userData} /> : null }
 
-                    {this.getAllJob()}
+                    {this.state.beginSearch ? this.SearchJob() : this.getAllJob()}
 
                     { this.state.openEdit ? <EditJobViewTask 
                         closeEditModal={this.closeEditModal} 

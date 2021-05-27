@@ -112,40 +112,40 @@ export default class EditJobViewTask extends React.Component {
                 size="lg"
                 show={this.props.openEdit} 
                 onHide={this.props.closeEditModal}>
-                 <Modal.Body>
-                <Form.Group >
+                <Modal.Body>
+                    <Form.Group >
 
-                    <Form.Label>Status: </Form.Label>
-                    <Form.Control as="select" custom onChange={(e) => this.handleChange(e)} name="status" defaultValue={this.props.selectedJob.status} >
-                    <option value={"In Review"}>In Review</option>
-                    <option value={"Offer Received"}>Offer Received</option>
-                    <option value={"Rejected"}>Rejected</option>
-                    </Form.Control>
+                        <Form.Label>Status: </Form.Label>
+                        <Form.Control as="select" custom onChange={(e) => this.handleChange(e)} name="status" defaultValue={this.props.selectedJob.status} >
+                        <option value={"In Review"}>In Review</option>
+                        <option value={"Offer Received"}>Offer Received</option>
+                        <option value={"Rejected"}>Rejected</option>
+                        </Form.Control>
 
-                    <Form.Label>Company Name: </Form.Label>
-                    <Form.Control type="text" onChange={(e) => this.handleChange(e)} name="company_name"  defaultValue={this.props.selectedJob.company_name}/>
+                        <Form.Label>Company Name: </Form.Label>
+                        <Form.Control type="text" onChange={(e) => this.handleChange(e)} name="company_name"  defaultValue={this.props.selectedJob.company_name}/>
 
-                    <Form.Label>Job Position: </Form.Label>
-                    <Form.Control type="text" onChange={(e) => this.handleChange(e)} name="job_title"  defaultValue={this.props.selectedJob.job_title}/> 
+                        <Form.Label>Job Position: </Form.Label>
+                        <Form.Control type="text" onChange={(e) => this.handleChange(e)} name="job_title"  defaultValue={this.props.selectedJob.job_title}/> 
 
-                    <Form.Label>Date Applied: </Form.Label>
-                    <Form.Control type="text" onChange={(e) => this.handleChange(e)} name="date"  defaultValue={this.props.selectedJob.date}/> 
+                        <Form.Label>Date Applied: </Form.Label>
+                        <Form.Control type="text" onChange={(e) => this.handleChange(e)} name="date"  defaultValue={this.props.selectedJob.date}/> 
 
-                    <Form.Label>Salary: </Form.Label>
-                    <Form.Control type="text" onChange={(e) => this.handleChange(e)} name="salary"  defaultValue={this.props.selectedJob.salary}/> 
+                        <Form.Label>Salary: </Form.Label>
+                        <Form.Control type="text" onChange={(e) => this.handleChange(e)} name="salary"  defaultValue={this.props.selectedJob.salary}/> 
 
-                    <Form.Label>Contact Number: </Form.Label>
-                    <Form.Control type="text" onChange={(e) => this.handleChange(e)} name="contact_number"  defaultValue={this.props.selectedJob.contact_number}/> 
+                        <Form.Label>Contact Number: </Form.Label>
+                        <Form.Control type="text" onChange={(e) => this.handleChange(e)} name="contact_number"  defaultValue={this.props.selectedJob.contact_number}/> 
 
-                    <Form.Label>Notes: </Form.Label>
-                    <Form.Control type="text" onChange={(e) => this.handleChange(e)} name="note"  defaultValue={this.props.selectedJob.note}/> 
+                        <Form.Label>Notes: </Form.Label>
+                        <Form.Control type="text" onChange={(e) => this.handleChange(e)} name="note"  defaultValue={this.props.selectedJob.note}/> 
 
-                </Form.Group>
+                    </Form.Group>
                 </Modal.Body>
                 <Modal.Footer>
-                <Button variant="primary" onClick={(e) => this.handleSubmitEditJob(e)} type="submit" >Submit Edit</Button>
-                <Button variant="primary" onClick={() => this.openDelete()} >Delete App</Button>
-                <Button variant="primary" onClick={this.openModal} >New Task</Button>
+                    <Button variant="primary" onClick={(e) => this.handleSubmitEditJob(e)} type="submit" >Submit Edit</Button>
+                    <Button variant="primary" onClick={() => this.openDelete()} >Delete App</Button>
+                    <Button variant="primary" onClick={this.openModal} >New Task</Button>
                 </Modal.Footer>
                 
 

@@ -12,7 +12,7 @@ export default class AddNewJob extends React.Component {
             job_title: "",
             date: "",
             salary: "",
-            status: false, 
+            status: "In Review", 
             note: "",
             contact_number: "",
             user_id: this.props.userData.id,
@@ -54,6 +54,14 @@ export default class AddNewJob extends React.Component {
 
             <Modal.Body bg="info">
                 <Form.Group >
+
+                    <Form.Label>Status: </Form.Label>
+                        <Form.Control as="select" custom onChange={(e) => this.handleChange(e)} name="status" defaultValue={"In Review"} >
+                        <option value={"In Review"}>In Review</option>
+                        <option value={"Offer Received"}>Offer Received</option>
+                        <option value={"Rejected"}>Rejected</option>
+                    </Form.Control>
+
 
                     <Form.Label>Company Name: </Form.Label>
                     <Form.Control type="text" onChange={(e) => this.handleChange(e)} name="company_name"  placeholder="Enter company name..."/>

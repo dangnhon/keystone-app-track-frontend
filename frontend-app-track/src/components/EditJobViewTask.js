@@ -17,7 +17,7 @@ export default class EditJobViewTask extends React.Component {
         job_title: this.props.selectedJob.job_title,
         date: this.props.selectedJob.date,
         salary: this.props.selectedJob.salary,
-        status: false, 
+        status: this.props.selectedJob.status, 
         note: this.props.selectedJob.note,
         contact_number: this.props.selectedJob.contact_number,
         user_id: this.props.userData.id
@@ -117,8 +117,9 @@ export default class EditJobViewTask extends React.Component {
 
                     <Form.Label>Status: </Form.Label>
                     <Form.Control as="select" custom onChange={(e) => this.handleChange(e)} name="status" defaultValue={this.props.selectedJob.status} >
-                    <option value={false}>In Review</option>
-                    <option value={true}>Offer Received</option>
+                    <option value={"In Review"}>In Review</option>
+                    <option value={"Offer Received"}>Offer Received</option>
+                    <option value={"Rejected"}>Rejected</option>
                     </Form.Control>
 
                     <Form.Label>Company Name: </Form.Label>

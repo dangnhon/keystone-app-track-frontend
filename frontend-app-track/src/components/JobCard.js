@@ -8,7 +8,7 @@ const JobCard = (props) => {
                     <Card.Body >
                         <Card.Title>Applied To: {props.job.company_name}</Card.Title>
                             <Card.Text>
-                                {props.job.status === false ? "Status: In Review" : "Status: Accepted"}
+                                {props.job.status}
                         </Card.Text>
                     </Card.Body>
                 </Card>

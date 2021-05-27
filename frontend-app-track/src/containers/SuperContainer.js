@@ -76,9 +76,7 @@ export default class SuperContainer extends React.Component {
 
                     <Route exact path="/analytics" render={() => {
                       return <Analytic 
-                      userData={this.props.userData}
-                      allJobs={this.props.allJobs}
-                      allMeets={this.props.allMeets}/>
+                      userData={this.props.userData}/>
                     }} />
 
                     <Route exact path="/appointment" component={Appointment} />

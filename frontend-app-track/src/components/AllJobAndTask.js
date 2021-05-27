@@ -6,12 +6,14 @@ import AddNewJob from '../components/AddNewJob.js'
 import EditJobViewTask from '../components/EditJobViewTask.js'
 import TaskCard from '../components/TaskCard.js'
 import JobCard from '../components/JobCard.js'
+import EditTask from '../components/EditTask.js'
 
 export default class AllJobAndTask extends React.Component {
 
     state = {
         isOpen: false,
         openEdit: false,
+        openTask: false,
         selectedTask: {},
         selectedJob: {},
         priority: "See All Task",
@@ -29,6 +31,13 @@ export default class AllJobAndTask extends React.Component {
     }
 
     closeEditModal = () => this.setState({ openEdit: false })
+
+    // openTaskModal = (e, task) => {
+    //     this.setState({ openTask: true })
+    //     this.setState({selectedTask: task}) 
+    // }
+
+    // closeTaskModal = () => this.setState({ openTask: false })
 
     completeTask = (task) => {
         let token = sessionStorage.getItem("token")
@@ -69,7 +78,7 @@ export default class AllJobAndTask extends React.Component {
      }
 
     getAllTask = () => {
-       return this.props.userData.tasks.map(task => <TaskCard task={task} completeTask={this.completeTask} handleDeleteSpecificTask={this.props.handleDeleteSpecificTask} key={task.id} />)
+       return this.props.userData.tasks.map(task => <TaskCard task={task} openEditModal={this.openTaskModal} completeTask={this.completeTask} handleDeleteSpecificTask={this.props.handleDeleteSpecificTask} key={task.id} />)
     }
 
     sortAllTask = () => {
@@ -122,6 +131,14 @@ export default class AllJobAndTask extends React.Component {
                         selectedJob={this.state.selectedJob} 
                         handleDeleteSpecificTask={this.props.handleDeleteSpecificTask}
                         handleDeleteJob={this.props.handleDeleteJob} /> : null }
+
+                    {/* { this.state.openTask ? <EditTask
+                        closeEditModal={this.closeTaskModal} 
+                        openEdit={this.state.openTask} 
+                        selectedJob={this.props.selectedJob}
+                        updateNewTask={this.props.updateNewTask}
+                        updateOldTask={this.props.updateOldTask}
+                        selectedTask={this.state.selectedTask} /> : null } */}
 
                 </div>
 

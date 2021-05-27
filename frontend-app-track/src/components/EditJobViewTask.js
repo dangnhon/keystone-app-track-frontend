@@ -7,6 +7,7 @@ import { Card } from 'react-bootstrap'
 import NewTask from '../components/NewTask.js'
 import  EditTask from '../components/EditTask.js'
 import DeleteCheck from '../components/DeleteCheck.js'
+import TaskCard from '../components/TaskCard.js'
 
 
 export default class EditJobViewTask extends React.Component {
@@ -76,6 +77,17 @@ export default class EditJobViewTask extends React.Component {
             return <p>Please create some tasks</p>
         }
     }
+
+    // figure out a way to toggle the edit task button during render or 
+
+    // getAllJobTask = () => {
+    //     let matchTask = this.props.userData.tasks.filter(task => task.job.id === this.props.selectedJob.id)
+    //     if (matchTask.length !== 0) {
+    //         return matchTask.map(task =>  <TaskCard task={task} openEditModal={this.openEditModal} />)
+    //     } else {
+    //         return <p>Please create some tasks</p>
+    //     }
+    // }
 
     handleSubmitEditJob = (e) => {
         e.preventDefault() 

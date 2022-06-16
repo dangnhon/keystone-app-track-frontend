@@ -13,6 +13,7 @@ export default class Analytic extends React.Component {
 
                 <div className="container-child right"> 
                     Meetup analytics
+                    <h3>Can you see this? cool!</h3>
                 </div> 
                     
             </div>

@@ -109,7 +109,7 @@ export default class AllJobAndTask extends React.Component {
                     <Button onClick={this.openModal} className="add-new">New App</Button>
 
                     <Form.Group className="sort" >
-                    <Form.Label>Search Contact: </Form.Label>
+                    <Form.Label>Search Apps: </Form.Label>
                     <Form.Control type="text" onChange={(e) => this.editSearchTerm(e)}  value={this.state.searchTerm} placeholder="Search by name..." />
                     </Form.Group>
 
